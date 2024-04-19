@@ -1,0 +1,35 @@
+/* Parent container for the footer elements */
+.footer-container {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* Footer text styling */
+.footer-text {
+    color: #006fb4;
+    font-size: smaller;
+    flex: 1;    
+}
+
+.social-media-icons {
+    display: flex;
+    align-items: center;
+    cursor: pointer;    
+}
+
+.bi {    
+    font-size: 1.5rem; 
+    padding: 0 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .social-media-icons {
+        margin-top: 10px;
+    }
+}

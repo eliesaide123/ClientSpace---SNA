@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<div class="blue-line">
+    <div class="icons-top-header">
+        <i class="bi bi-arrow-left-circle" (click)="HistoryMinus1()"></i>
+        <i class="bi bi-cart3"></i>
+    </div>
+</div>
+
+<div class="identification-section">
+    <h5>My Identification</h5>
+    <hr>
+    <div class="form-rows-container">
+        <div class="form-column">
+            <div class="form-row">
+                <label class="inputLabel">User ID *</label>
+                <input class="inputBtn" type="text">
+            </div>
+            <div class="form-row">
+                <label class="inputLabel">Policy No *</label>
+                <input class="inputBtn" type="text">
+                <span>(ABC/123456)</span>
+            </div>
+            <div class="form-row">
+                <label class="inputLabel">Expiry Date *</label>
+                <div class="date-inputs">
+                    <input class="inputBtn" type="text" placeholder="Day"> /
+                    <input class="inputBtn" type="text" placeholder="Mon"> /
+                    <input class="inputBtn" type="text" placeholder="Year"> &nbsp;
+                </div>
+                <span>(dd/mm/yyyy)</span>
+            </div>
+        </div>
+        <div class="form-column">
+            <div class="form-row">
+                <label class="inputLabel">PIN *</label>
+                <input class="inputBtn" type="text">
+            </div>
+            <div class="form-row">
+                <label class="inputLabel">Email *</label>
+                <input class="inputBtn" type="text">
+            </div>
+            <div class="form-row">
+                <label class="inputLabel">Mobile *</label>
+                <input class="inputBtn" type="text">
+                <span>(+/00961xxxxxxxx)</span>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div>
+    <h5>Validation Set</h5>
+</div>
+<hr>
+
+<div>
+    <span>Question</span>
+    <select name="" id=""></select><br>
+    <span>Answer</span>
+    <input type="text">
+    <br>
+    <div class="btnSubmitCancel">
+        <input class="btnRegister" type="button" value="REGISTER">
+        <input class="btnCancel" type="button" value="CANCEL">
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+<!-- Image Company Section -->
+<div class="header-container">
+    <div class="header-section company-logo">
+        <img src="../assets/images/AllianzLogo.jpg" alt="">
+    </div>
+    <!-- Contact Info Section -->
+    <div class="header-section contact-info">
+        <span class="text-bold">Contact us</span>
+        <div class="contact-inner">
+            <span><img class="icon-header icon-phone" src="../assets/images/icon-phone.png"></span>&nbsp;
+            <span>{{this.CompanyContactPhoneNb}}</span>
+        </div>
+    </div>
+
+    <!-- Address Info Section -->
+    <div *ngIf="showAddress" class="header-section address-info">
+        <span class="text-bold">Our Address</span>
+        <div class="contact-inner">
+            <span><img class="icon-header icon-location" src="../assets/images/icon-location.png"></span>&nbsp;
+            <span>{{this.CompanyNameAndAddress}}</span>
+        </div>
+        <span>{{this.CompanyNameAndAddress2}}</span>
+    </div>
+
+    <!-- Working Hours Section -->
+    <div *ngIf="showWorkingHours" class="header-section working-hours">
+        <span class="text-bold">Working Hours</span>
+        <div class="contact-inner">
+            <span><img class="icon-header icon-clock" src="../assets/images/icon-clock.png"></span>&nbsp;
+            <span>{{this.WorkingHours}}</span>
+        </div>
+    </div>
+
+    <!-- Email Us Section -->
+    <div *ngIf="showEmail" class="header-section email-us">
+        <span class="text-bold">Email</span>
+        <div class="contact-inner">           
+            <span>{{this.CompanyContactEmail}}</span>
+        </div>
+    </div>
+</div>

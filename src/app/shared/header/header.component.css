@@ -1,0 +1,53 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;    
+}
+
+.company-logo{
+    margin: 10px;
+}
+
+.header-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    color: #006192;
+}
+
+.contact-info,
+.address-info,
+.working-hours,
+.email-us {
+    margin: 10px;
+    text-align: center;
+}
+
+.text-bold {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.icon-header.icon-location,
+.icon-header.icon-phone,
+.icon-header.icon-clock {
+    width: 100%;    
+}
+
+.contact-inner {
+    display: flex;
+    align-items: center;    
+    justify-content: center;    
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+    }
+
+    .header-section {
+        margin-bottom: 10px;
+    }
+}

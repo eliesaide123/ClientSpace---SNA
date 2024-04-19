@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="background-image">
+
+    <h1 class="welcome-phrase">Welcome to SNA s.a.l. Client Web Space</h1>
+
+    <div id="card">
+        <div id="card-content">
+            <div id="card-title">
+                <h2>Sign In</h2>
+            </div>
+            <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+                <span class="txtInput">User Id</span>
+                <input class="textInput" formControlName="userid" />
+                <div class="alert alert-danger" *ngIf="form.get('userid')?.touched && form.get('userid')?.errors">User
+                    ID is required</div>
+                <div class="divRemember">
+                    <input type="checkbox" formControlName="rememberMe"><span class="spnRemember">Remember my User Id?</span>
+                </div>
+                <span class="txtInput">Password</span>
+                <div class="password-container">
+                    <input [type]="showIcons ? 'password' : 'text'" id="txtPswd" class="textInput" formControlName="password" />
+                    <i *ngIf="showIcons" class="bi bi-eye-slash-fill password-icon" (click)="togglePasswordVisibility()"></i>
+                    <i *ngIf="!showIcons" class="bi bi-eye-fill password-icon" (click)="togglePasswordVisibility()"></i>
+                </div>                
+                <div class="alert alert-danger" *ngIf="form.get('password')?.touched && form.get('password')?.errors">
+                    Password is required</div>
+                <a class="link" href="">Forgot Password?</a>
+                <input class="btnSubmit" type="submit" name="submit" value="SIGN IN" />
+                <span class="sign-up">If you are not registered, please <a routerLink="/register" routerLinkActive="active" class="sign-up-link">Sign Up</a></span>
+            </form>
+        </div>
+    </div>
+
+</div><br>
+
+<app-footer></app-footer>

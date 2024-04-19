@@ -1,0 +1,124 @@
+.blue-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  background-color: #49648c;
+  height: 40px;
+}
+
+.icons-top-header {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.bi {
+  color: white;
+  font-size: 1.6em;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.identification-section h5 {
+  margin-bottom: 10px;
+}
+
+.form-rows-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 50px;
+}
+
+.form-row {
+  display: flex;
+  max-width: 850px;
+  margin-bottom: 10px;
+}
+
+.inputLabel {
+  background-color: #cfe9ee;
+  padding: 5px;
+  font-weight: 500;
+}
+
+.form-row label {
+  width: 35%;
+  margin-right: 10px;
+  height: 90%;
+  align-content: center;
+}
+
+.form-row input[type="text"],
+.date-inputs input {
+  padding: 5px;
+  max-width: 400px;  
+  width: 100%;  
+}
+
+.date-inputs {
+  display: flex;
+  width: 30%;
+  height: 35px;
+  gap: 10px;
+}
+
+.form-row span {
+  display: inline-block;  
+  max-width: 300px;  
+  text-overflow: ellipsis;  
+  overflow: hidden;  
+  white-space: nowrap;  
+}
+
+.form-column:last-child {
+  margin-right: 0;
+}
+
+.inputBtn {
+  height: 35px;
+  border-radius: 6px;
+}
+
+.btnRegister{
+  background-color: #49648c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;    
+  border: 2px solid #49648c;
+}
+
+.btnRegister:hover {
+  background-color: white;
+  color: #49648c;
+  border: 2px solid #49648c;
+}
+
+.btnCancel{
+  background-color: #8a679c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+  border: 2px solid #8a679c;
+}
+
+.btnCancel:hover{
+  background-color: white;
+  color: #8a679c;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid #8a679c;  
+}
+
+.btnSubmitCancel {
+  display: flex;
+  justify-content: flex-end;  
+  padding: 10px;
+}
