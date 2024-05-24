@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './service/authentication.service';
+import { catchError, tap } from 'rxjs';
+import { login } from './store/actions/auth.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +14,10 @@ import { AuthenticationService } from './service/authentication.service';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  showIcons: boolean = false;  
+  showIcons: boolean = false;
+  sessionId: string = "";
 
-  constructor(private router : Router, private authService: AuthenticationService ){
+  constructor(private router: Router, private authService: AuthenticationService, private store: Store) {
     this.form = new FormGroup({
       userid: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
@@ -21,60 +25,82 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  ngOnInit() {    
-    this.showIcons = true
+  ngOnInit() {
+    this.showIcons = true;
+    this.authService.getSessionId()
+      .pipe(
+        tap(sessionIdResponse => {
+          debugger
+          this.sessionId = sessionIdResponse.sessionId;
+        }),
+        catchError(err => {
+          console.error("Failed to get session ID: " + err);
+          return err;
+        })
+      )
+      .subscribe(
+        () => alert("Session ID: " + this.sessionId)
+      )
   }
 
-  togglePasswordVisibility(){    
+  togglePasswordVisibility() {
     this.showIcons = !this.showIcons;
   }
 
   onSubmit() {
     if (this.form.valid) {
-      // Call getSessionId first
-      this.authService.getSessionId().subscribe(sessionIdResponse => {
-        const sessionId = sessionIdResponse.sessionId;
+      // Check if sessionId is not null or empty
+      if (this.sessionId) {
+        const username = this.form.get('userid')?.value;
+        const password = this.form.get('password')?.value;
+        const rememberMe = this.form.get('rememberMe')?.value;
 
-        // Check if sessionId is not null or empty
-        if (sessionId) {
-          const username = this.form.get('userid')?.value;
-          const password = this.form.get('password')?.value;
-          const rememberMe = this.form.get('rememberMe')?.value;
+        const clientType = 'P'; // Adjust as needed
+        const isFirstLogin = false; // Adjust as needed
 
-          const clientType = 'P'; // Adjust as needed
-          const isFirstLogin = true; // Adjust as needed
+        const credentials = {
+          i__UserName: username,
+          i__Password: password,
+          i__ClientType: clientType,
+          i__IsFirstLogin: isFirstLogin.toString(),
+          sessionId: this.sessionId
+        };
 
-          const credentials = {
-            i__UserName: username,
-            i__Password: password,
-            i__ClientType: clientType,
-            i__IsFirstLogin: isFirstLogin.toString(),
-            sessionId: sessionId // Add sessionId to the credentials
-          };
+        // this.store.pipe(select(authSelector)).subscribe(isAuthenticated => {
+        //   alert("isAuthenticated")
+        // });
 
-          // Call authenticate method with updated credentials
-          this.authService.checkCredentials(credentials).subscribe(authResponse => {
-            // Handle successful authentication response
-            alert('Authentication successful: ' + authResponse);
-            if (rememberMe) {
-              sessionStorage.setItem('Username', username);
-            }
-            // Redirect or handle as needed
-          }, error => {
-            // Handle authentication error
-            alert('Authentication error: ' + error);
-          });
-
-        } else {
-          alert('Session ID is null');
-        }
-      }, error => {
-        // Handle getSessionId error
-        alert('Error fetching session ID: ' + error);
-      });
-
+        this.authService.checkCredentials(credentials)
+          .pipe(
+            tap(AuthResponse => {
+              debugger
+              this.store.dispatch(login({ AuthResponse }))
+              alert('Authentication successful: ' + AuthResponse.isAuthenticated);
+              if (rememberMe) {
+                sessionStorage.setItem('Username', username);
+              }
+              if (AuthResponse.isAuthenticated) {
+                if (AuthResponse.isFirstLogin) {
+                  alert("Go To Profile")
+                } else {
+                  alert("go to checkRoles")
+                }
+              }
+            }),
+            catchError(err => {
+              console.error("Failed to login: " + err)
+              return err;
+            })
+          )
+          .subscribe(
+            () => alert("Login Success")
+          )
+      } else {
+        alert('Session ID is null');
+      }
     } else {
       this.form.markAllAsTouched();
     }
   }
 }
+
