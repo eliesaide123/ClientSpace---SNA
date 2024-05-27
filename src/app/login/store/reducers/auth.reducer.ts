@@ -4,7 +4,7 @@ import { AuthAction } from '../actions';
 
 
 export const reducerFeatureKey = 'auth';
-
+debugger
 export interface AuthState {
   AuthResponse: AuthResponse | null
 }
@@ -15,11 +15,11 @@ export const initialAuthState: AuthState = {
 
 export const authReducer = createReducer(  
   initialAuthState,
-  on(AuthAction.login, (state, action) => {    
+  on(AuthAction.login, (state, action) => {
+    debugger;
     return{
-      ...state,
+      ...state,      
       AuthResponse: action.AuthResponse
     }
   })
 );
-

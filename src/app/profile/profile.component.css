@@ -1,0 +1,51 @@
+.divUser {
+    display: flex;
+}
+
+.divUser div {
+    margin-right: 10px;
+    /* Optional: Add space between the divs */
+}
+
+.line-with-text {
+    display: flex;
+    align-items: center;
+    /* Align items vertically */
+}
+
+hr {
+    flex: 1;
+    /* Take remaining space */
+    border: none;
+    border-top: 35px solid black;
+    /* Example border style */
+    margin: 0 10px;
+    /* Adjust spacing */
+}
+
+span {
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+}
+
+.blue-line {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    background-color: #49648c;
+    height: 40px;
+}
+
+.icons-top-header {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.bi {
+    color: white;
+    font-size: 1.6em;
+    margin-right: 20px;
+    cursor: pointer;
+}

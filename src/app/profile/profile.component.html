@@ -1,0 +1,81 @@
+<!-- <app-header></app-header> -->
+
+<div class="line-with-text">
+    <hr>
+    <span>Text goes here</span>
+    <hr>
+</div>
+
+
+<div>
+    <div class="divUser">
+        <div>
+            <label for="Txt_WebUserID">Web User ID</label>
+            <!-- <% If (Me.m_Mode = "CP") Then%> -->
+            <i class="validationStar">*</i>
+            <!-- <% end If %> -->
+        </div>
+        <div>
+            <input type="text" id="Txt_WebUserID" name="Txt_WebUserID" />
+        </div>
+    </div>    
+    <div class="divUser">
+        <div>
+            <label for="Txt_OldPassword">Current Password</label>
+            <!-- <% If (Me.m_Mode <> "CP") Then%> -->
+            <i class="validationStar">*</i>
+            <!-- <% End If %> -->
+        </div>
+        <div>
+            <input type="password" id="Txt_OldPassword" name="Txt_OldPassword" />
+        </div>
+    </div>    
+    <div>
+        <fieldset>
+            <legend>Profile</legend>
+            <div class="divUser">
+                <div>
+                    <label for="Txt_Mobile">Mobile</label>
+                </div>
+                <div>
+                    <input type="text" id="Txt_Mobile" name="Txt_Mobile" />
+                    <label for="Txt_Mobile">(International)</label>
+                </div>
+            </div>
+            <div class="divUser">
+                <div>
+                    <label for="Txt_Email">Email</label>
+                </div>
+                <div>
+                    <input type="email" id="Txt_Email" name="Txt_Email" />
+                </div>
+            </div>
+            <div style="height: 8px;"></div>
+        </fieldset>
+    </div>    
+    <div>
+        <fieldset>
+            <legend>Validation Set</legend>
+            <div>
+                <div>
+                    <label for="DDL_Questions">Question</label>
+                    <i class="validationStar">*</i>
+                </div>
+                <div>
+                    <select>
+                        <option value="0">option 1</option>
+                        <option value="1">option 2</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="divUser">
+        <div>
+            <button type="submit" id="Btn_UpdateProfile">Submit</button>
+        </div>
+        <div>
+            <button type="button" id="Btn_Cancel">Cancel</button>
+        </div>
+    </div>
+</div>

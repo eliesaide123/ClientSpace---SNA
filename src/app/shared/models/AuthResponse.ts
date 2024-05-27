@@ -1,5 +1,6 @@
+import { UserCredentials } from "./UserCredentials";
+
 export interface AuthResponse{
-    isAuthenticated: boolean;
-    isFirstLogin: boolean;
+    user: UserCredentials,
     oServerResponse: object
 }

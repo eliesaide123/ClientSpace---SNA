@@ -39,10 +39,12 @@ export class HeaderComponent implements OnInit {
 
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
-    ).subscribe((event) => {
-      this.showAddress = event.urlAfterRedirects !== '/register';
-      this.showEmail = event.urlAfterRedirects == '/register';
-      this.showWorkingHours = event.urlAfterRedirects !== '/register';
+    ).subscribe((event: NavigationEnd) => {
+      const url = event.urlAfterRedirects;
+      this.showAddress = url !== '/register' && url !== '/profile';
+      this.showEmail = url == '/register' ;
+      this.showEmail = url == '/profile' ;
+      this.showWorkingHours = url !== '/register' && url !== '/profile';
     });
   }
 

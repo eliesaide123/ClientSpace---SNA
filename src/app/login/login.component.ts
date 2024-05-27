@@ -66,24 +66,21 @@ export class LoginComponent implements OnInit {
           sessionId: this.sessionId
         };
 
-        // this.store.pipe(select(authSelector)).subscribe(isAuthenticated => {
-        //   alert("isAuthenticated")
-        // });
-
         this.authService.checkCredentials(credentials)
           .pipe(
             tap(AuthResponse => {
               debugger
               this.store.dispatch(login({ AuthResponse }))
-              alert('Authentication successful: ' + AuthResponse.isAuthenticated);
+              alert('Authentication successful: ' + AuthResponse.user.isAuthenticated);
               if (rememberMe) {
                 sessionStorage.setItem('Username', username);
               }
-              if (AuthResponse.isAuthenticated) {
-                if (AuthResponse.isFirstLogin) {
+              if (AuthResponse.user.isAuthenticated) {
+                if (AuthResponse.user.isFirstLogin) {
+                  // this should route us to profile component
                   alert("Go To Profile")
                 } else {
-                  alert("go to checkRoles")
+                  this.router.navigateByUrl('/profile')
                 }
               }
             }),

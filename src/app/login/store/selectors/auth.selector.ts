@@ -5,5 +5,5 @@ export const selectAuthState = createFeatureSelector<AuthState>("auth");
 
 export const authSelector = createSelector(    
     selectAuthState,
-    auth => auth.AuthResponse?.isAuthenticated
+    auth => auth.AuthResponse?.user.IsAuthenticated
 )
