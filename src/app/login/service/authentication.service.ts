@@ -16,8 +16,9 @@ export class AuthenticationService {
     return this.http.get<any>(url);
   }
 
-  checkCredentials(credentials: any): Observable<any> {
-      return this.http.get<any>(`${environment.BASE_URL_API}/api/Authenticate/login-user`, { params: credentials })
+  loginUser(credentials: any): Observable<any> {
+    debugger
+      return this.http.post<any>(`${environment.BASE_URL_API}/api/Authenticate/login-user`, credentials)
   }
 
 }

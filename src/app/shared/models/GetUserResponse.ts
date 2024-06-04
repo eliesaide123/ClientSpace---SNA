@@ -1,4 +1,6 @@
+import { UserCredentials } from "./UserCredentials";
+
 export interface GetUserResponse{
-    userAccount: object,
+    userAccount: UserCredentials,
     questions: string[]
 }

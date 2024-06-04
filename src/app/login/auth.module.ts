@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './store/reducers/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
+import { AuthEffect } from './store/effects/auth.effect';
 
 
 
@@ -15,9 +16,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule,
+    SharedModule,    
     StoreModule.forFeature(fromAuth.reducerFeatureKey, fromAuth.authReducer),
-    EffectsModule.forFeature([])
+    EffectsModule.forFeature([AuthEffect])
   ]
 })
 export class AuthModule { }

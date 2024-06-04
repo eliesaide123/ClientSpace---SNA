@@ -1,8 +1,9 @@
 export interface UserCredentials {
-    Username: string;
-    Password: string;
-    ClientType: string;
-    UserID: string;
-    IsFirstLogin: boolean;
-    IsAuthenticated: boolean;
+    username?: string;
+    password?: string;
+    clientType?: string;
+    userID?: string;
+    isFirstLogin?: boolean;
+    isAuthenticated?: boolean;
+    sessionID?: string;
 }

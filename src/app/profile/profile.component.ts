@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { profileService } from './service/profile.service';
-import { tap } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { getUserSelector } from './store/selectors/getUser.selector';
+import { GetUserResponse } from '../shared/models/GetUserResponse';
+import { AuthResponse } from '../shared/models/AuthResponse';
+import { getUserAction } from './store/actions';
+import { PouchdbService } from '../PouchDB/pouchdb.service';
+import { login } from '../login/store/actions/auth.actions';
 import { authSelector } from '../login/store/selectors/auth.selector';
 
 @Component({
@@ -12,45 +17,68 @@ import { authSelector } from '../login/store/selectors/auth.selector';
 })
 export class ProfileComponent implements OnInit {
 
-  credentials: object | undefined
+  getCredentials: AuthResponse | null = null;
+  username: string;
+  mobile: string;
+  question: string;
+  otherQuestion: string;
+  answer: string;
+  email: string;
+  questions: string[] = [];
+  index: number;
+  selectedIndex: number | null = null;
 
-  constructor(private location: Location, private profileSer: profileService, private store: Store) {
-
-  }
+  constructor(private location: Location, private profileSer: profileService, private store: Store, private pouchdbService: PouchdbService) { }
 
   ngOnInit() {
+    this.pouchdbService.getLatestUser()
+      .then((doc) => {
+        if (doc) { // Check if doc is not undefined
+          const authResponse: AuthResponse = doc.response; // Directly cast to AuthResponse
+          this.store.dispatch(login({ AuthResponse: authResponse }));
+        } else {
+          console.error('No document found in PouchDB');
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching data from PouchDB', err);
+      });
 
-    debugger
-    // this.store.select(authSelector).subscribe(cred => {      
-    //   console.log(cred)
-    // })
+    this.store.select(authSelector).subscribe(authResponse => {
+      this.getCredentials = authResponse;
+      if (this.getCredentials) {
+        this.profileSer.getUserAccount(this.getCredentials.user).subscribe(res => {
+          this.username = res.userAccount.username;
+          this.mobile = res.userAccount.mobile;
+          this.otherQuestion = res.userAccount.question;
+          this.answer = res.userAccount.answer;
+          this.email = res.userAccount.email;
+          this.questions = res.questions
+
+          debugger
+
+          if (!this.questions.includes(this.question)) {
+            this.question = this.questions[this.questions.length - 1]
+            this.index = this.questions.indexOf(this.question)
+            debugger;
+          }
+          const event = {target: {selectedIndex: this.index}} as unknown as Event;
+
+          this.onQuestionChange(event);
+        });
+      }
+    });    
+  }
+
+  onQuestionChange(event: Event): void {
+    debugger;
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedOptionIndex = selectElement.selectedIndex;
+
+    this.selectedIndex = selectedOptionIndex;
   }
 
   HistoryMinus1() {
     this.location.back();
   }
 }
-
-
-/*
-{
-    "userAccount": {
-        "username": "a.khoury",
-        "password": "gilxjiaiDjidiaFF",
-        "email": "a.khoury@dq.com.lb",
-        "mobile": "+9613839384",
-        "userLang": 0,
-        "contactScenario": "",
-        "regType": "",
-        "question": "q",
-        "answer": "a"
-    },
-    "questions": [
-        "What is your Mother’s maiden name?",
-        "What is the name of your hometown?",
-        "What is your favorite color?",
-        "What is your first car color?",
-        "Other Question..."
-    ]
-}
-*/

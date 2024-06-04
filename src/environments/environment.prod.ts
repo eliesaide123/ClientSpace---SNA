@@ -1,5 +1,5 @@
 export const environment = {
-    BASE_URL_API: "http://192.168.12.25:5137",
+    BASE_URL_API: "http://192.168.12.192:5137",
     CompanyName: "SNA S.A.L.",
     CompanyNameAndAddress: "SNA S.A.L. Hazmieh, Beirut - Lebanon",
     CompanyNameAndAddress2: "P.O.BOX 16-6528",

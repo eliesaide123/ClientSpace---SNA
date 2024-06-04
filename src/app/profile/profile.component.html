@@ -1,9 +1,10 @@
-<!-- <app-header></app-header> -->
+<app-header></app-header>
 
-<div class="line-with-text">
-    <hr>
-    <span>Text goes here</span>
-    <hr>
+<div class="blue-line">
+    <div class="icons-top-header">
+        <i class="bi bi-arrow-left-circle" (click)="HistoryMinus1()"></i>
+        <i class="bi bi-cart3"></i>
+    </div>
 </div>
 
 
@@ -18,7 +19,7 @@
         <div>
             <input type="text" id="Txt_WebUserID" name="Txt_WebUserID" />
         </div>
-    </div>    
+    </div>
     <div class="divUser">
         <div>
             <label for="Txt_OldPassword">Current Password</label>
@@ -29,7 +30,7 @@
         <div>
             <input type="password" id="Txt_OldPassword" name="Txt_OldPassword" />
         </div>
-    </div>    
+    </div>
     <div>
         <fieldset>
             <legend>Profile</legend>
@@ -38,7 +39,7 @@
                     <label for="Txt_Mobile">Mobile</label>
                 </div>
                 <div>
-                    <input type="text" id="Txt_Mobile" name="Txt_Mobile" />
+                    <input type="text" id="Txt_Mobile" name="Txt_Mobile" [(ngModel)]="mobile" />
                     <label for="Txt_Mobile">(International)</label>
                 </div>
             </div>
@@ -47,12 +48,12 @@
                     <label for="Txt_Email">Email</label>
                 </div>
                 <div>
-                    <input type="email" id="Txt_Email" name="Txt_Email" />
+                    <input type="email" id="Txt_Email" name="Txt_Email" [(ngModel)]="email" />
                 </div>
             </div>
             <div style="height: 8px;"></div>
         </fieldset>
-    </div>    
+    </div>
     <div>
         <fieldset>
             <legend>Validation Set</legend>
@@ -61,11 +62,23 @@
                     <label for="DDL_Questions">Question</label>
                     <i class="validationStar">*</i>
                 </div>
+                <div>                                                            
+                    <select [(ngModel)]="question" (change)="onQuestionChange($event)">                        
+                        <option *ngFor="let option of questions" [value]="option">{{option}}</option>
+                    </select>                                    
+                </div>
                 <div>
-                    <select>
-                        <option value="0">option 1</option>
-                        <option value="1">option 2</option>
-                    </select>
+                    <label for="answer">Answer</label>
+                    <i class="validationStar">*</i>
+                </div>
+                <div>
+                    <div *ngIf="selectedIndex === questions.length - 1">
+                        <input type="text" [(ngModel)]="otherQuestion" placeholder="Other question">
+                        <input type="text" [(ngModel)]="answer" placeholder="Answer">
+                    </div>
+                    <div *ngIf="selectedIndex !== questions.length - 1">
+                        <input type="text" [(ngModel)]="answer" placeholder="Answer">
+                    </div>
                 </div>
             </div>
         </fieldset>

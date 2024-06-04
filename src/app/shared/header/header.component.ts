@@ -41,10 +41,11 @@ export class HeaderComponent implements OnInit {
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       const url = event.urlAfterRedirects;
-      this.showAddress = url !== '/register' && url !== '/profile';
+      this.showAddress = url !== '/register' && url !== '/profile' && url !== '/client-policies';
       this.showEmail = url == '/register' ;
       this.showEmail = url == '/profile' ;
-      this.showWorkingHours = url !== '/register' && url !== '/profile';
+      this.showEmail = url == '/client-policies' ;
+      this.showWorkingHours = url !== '/register' && url !== '/profile' && url !== '/client-policies';
     });
   }
 

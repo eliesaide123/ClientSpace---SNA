@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './login/auth.module';
@@ -12,17 +12,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
+import { ProfileModule } from './profile/profile.module';
+import { ClientPoliciesComponent } from './client-policies/client-policies.component';
+import { ClientPoliciesModule } from './client-policies/client-policies.module';
 
 @NgModule({
   declarations: [
-    AppComponent 
+    AppComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule,
+    SharedModule,    
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([])

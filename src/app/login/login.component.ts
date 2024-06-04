@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './service/authentication.service';
-import { catchError, tap } from 'rxjs';
+import { catchError, take, tap } from 'rxjs/operators';
 import { login } from './store/actions/auth.actions';
 import { Store } from '@ngrx/store';
+import { PouchdbService } from '../PouchDB/pouchdb.service';
+import { UserCredentials } from '../shared/models/UserCredentials';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   showIcons: boolean = false;
   sessionId: string = "";
 
-  constructor(private router: Router, private authService: AuthenticationService, private store: Store) {
+  constructor(private router: Router, private authService: AuthenticationService, private store: Store, private pouchdbService: PouchdbService) {
     this.form = new FormGroup({
       userid: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
@@ -27,29 +29,31 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.showIcons = true;
+    
+    this.pouchdbService.deleteAllDocuments()
+    
     this.authService.getSessionId()
-      .pipe(
-        tap(sessionIdResponse => {
-          debugger
-          this.sessionId = sessionIdResponse.sessionId;
-        }),
+      .pipe(        
+        tap(sessionIdResponse => {          
+          this.sessionId = sessionIdResponse.sessionId;          
+        }        
+      ),
         catchError(err => {
           console.error("Failed to get session ID: " + err);
           return err;
         })
       )
       .subscribe(
-        () => alert("Session ID: " + this.sessionId)
+        () => alert("Session ID: " + this.sessionId)        
       )
   }
 
-  togglePasswordVisibility() {
+    togglePasswordVisibility() {
     this.showIcons = !this.showIcons;
   }
 
   onSubmit() {
     if (this.form.valid) {
-      // Check if sessionId is not null or empty
       if (this.sessionId) {
         const username = this.form.get('userid')?.value;
         const password = this.form.get('password')?.value;
@@ -58,29 +62,37 @@ export class LoginComponent implements OnInit {
         const clientType = 'P'; // Adjust as needed
         const isFirstLogin = false; // Adjust as needed
 
-        const credentials = {
-          i__UserName: username,
-          i__Password: password,
-          i__ClientType: clientType,
-          i__IsFirstLogin: isFirstLogin.toString(),
-          sessionId: this.sessionId
+        const credentials : UserCredentials = {
+          username: username,
+          password: password,
+          clientType: clientType,
+          isFirstLogin: isFirstLogin,
+          sessionID: this.sessionId
         };
 
-        this.authService.checkCredentials(credentials)
+        this.authService.loginUser(credentials)
           .pipe(
-            tap(AuthResponse => {
-              debugger
+            take(1),
+            tap(async AuthResponse => {    
+              debugger;          
               this.store.dispatch(login({ AuthResponse }))
               alert('Authentication successful: ' + AuthResponse.user.isAuthenticated);
               if (rememberMe) {
-                sessionStorage.setItem('Username', username);
+                await this.pouchdbService.addItem({
+                  _id: 'SNA_DB',
+                  user: username
+                }).then(() => {
+                  alert('User saved in PouchDB');
+                }).catch(err => {
+                  console.error('Failed to save user in PouchDB', err);
+                });
               }
               if (AuthResponse.user.isAuthenticated) {
                 if (AuthResponse.user.isFirstLogin) {
                   // this should route us to profile component
-                  alert("Go To Profile")
+                  this.router.navigateByUrl('/profile')  
                 } else {
-                  this.router.navigateByUrl('/profile')
+                  this.router.navigateByUrl('/client-policies')               
                 }
               }
             }),
@@ -100,4 +112,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
