@@ -4,7 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AuthModule } from '../login/auth.module';
 import { ProfileModule } from '../profile/profile.module';
-import { ClientPoliciesModule } from '../client-policies/client-policies.module';
+import { LoginComponent } from '../login/login.component';
 
 @NgModule({
   declarations: [
@@ -12,10 +12,7 @@ import { ClientPoliciesModule } from '../client-policies/client-policies.module'
     FooterComponent
   ],
   imports: [
-    CommonModule,
-    AuthModule,
-    ProfileModule,
-    ClientPoliciesModule,
+    CommonModule
   ],
   exports: [
     HeaderComponent,

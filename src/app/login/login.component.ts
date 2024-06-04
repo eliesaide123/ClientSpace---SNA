@@ -87,9 +87,9 @@ export class LoginComponent implements OnInit {
                   console.error('Failed to save user in PouchDB', err);
                 });
               }
+              debugger;
               if (AuthResponse.user.isAuthenticated) {
-                if (AuthResponse.user.isFirstLogin) {
-                  // this should route us to profile component
+                if (AuthResponse.user.isFirstLogin) {                  
                   this.router.navigateByUrl('/profile')  
                 } else {
                   this.router.navigateByUrl('/client-policies')               

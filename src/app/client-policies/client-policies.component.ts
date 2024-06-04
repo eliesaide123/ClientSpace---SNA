@@ -12,8 +12,10 @@ import { Store } from '@ngrx/store';
 export class ClientPoliciesComponent implements OnInit {
 
 
-  constructor(private pouchdbService: PouchdbService, private store: Store) { }
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    alert("hello")
+  }
 
 }

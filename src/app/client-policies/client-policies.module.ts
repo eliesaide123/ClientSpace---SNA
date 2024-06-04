@@ -7,19 +7,27 @@ import { ClientPoliciesComponent } from './client-policies.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromClientPolicies from './store/reducers/client-policies.reducer';
 import { AuthModule } from '../login/auth.module';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [ClientPoliciesComponent],
-  exports: [ClientPoliciesComponent],
   imports: [
     CommonModule,
     SharedModule,
-    AuthModule,
+    ReactiveFormsModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: ClientPoliciesComponent
+      },
+    ]),      
     StoreModule.forFeature(fromClientPolicies.reducerFeatureKey, fromClientPolicies.ClientPoliciesReducer),
     EffectsModule.forFeature([ClientPoliciesEffect])
-  ]
+  ],
+  declarations: [ClientPoliciesComponent]
+  
   
 })
 export class ClientPoliciesModule { }
