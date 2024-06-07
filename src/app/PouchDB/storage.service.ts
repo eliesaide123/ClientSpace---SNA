@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StorageService {
-  
+
+  constructor() {}
+
   addDB(item: any, dbName: string, storeName: string): Promise<void> {
     debugger;
     return new Promise<void>((resolve, reject) => {
@@ -94,6 +96,43 @@ export class StorageService {
         console.warn("Database deletion blocked:", event);
         reject(event);
       };
+    });
+  }
+
+  deleteAllDatabases(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const request = indexedDB.databases();
+
+      request.then((dbInfos: IDBDatabaseInfo[]) => {
+        const promises: Promise<void>[] = [];
+
+        for (const dbInfo of dbInfos) {
+          const dbName = dbInfo.name;
+          if (typeof dbName === 'string') {
+            const deleteRequest = indexedDB.deleteDatabase(dbName);
+
+            deleteRequest.onsuccess = () => {
+              console.log("Database deleted successfully:", dbName);
+            };
+
+            deleteRequest.onerror = (event: Event) => {
+              console.error("Error deleting database:", dbName, event);
+            };
+
+            promises.push(new Promise<void>((res, rej) => {
+              deleteRequest.onsuccess = () => res();
+              deleteRequest.onerror = (event) => rej(event);
+            }));
+          }
+        }
+
+        Promise.all(promises)
+          .then(() => resolve()) // Resolve with void
+          .catch(error => reject(error));
+      }).catch((error: DOMException) => {
+        console.error("Error getting database names:", error);
+        reject(error);
+      });
     });
   }
 }

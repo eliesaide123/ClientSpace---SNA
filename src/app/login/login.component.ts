@@ -7,6 +7,7 @@ import { login } from './store/actions/auth.actions';
 import { Store } from '@ngrx/store';
 import { UserCredentials } from '../shared/models/UserCredentials';
 import { BaseComponent } from '../shared/BaseComponent';
+import { StorageService } from '../PouchDB/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
   showIcons: boolean = false;
   sessionId: string = "";
 
-  constructor(private router: Router, private authService: AuthenticationService, private store: Store) {
+  constructor(private router: Router, private authService: AuthenticationService, private store: Store, private storageService : StorageService) {
     super();
     this.form = new FormGroup({
       userid: new FormControl('', Validators.required),
@@ -30,6 +31,8 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.showIcons = true;
+
+    this.storageService.deleteAllDatabases();
 
     this.subscriptions.push(this.authService.getSessionId()
       .pipe(
