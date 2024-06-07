@@ -8,8 +8,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
 import { AuthEffect } from './store/effects/auth.effect';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../shared/header/header.component';
-import { FooterComponent } from '../shared/footer/footer.component';
 import { AuthenticationService } from './service/authentication.service';
 
 

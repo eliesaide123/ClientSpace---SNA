@@ -6,7 +6,6 @@ import { getUserSelector } from './store/selectors/getUser.selector';
 import { GetUserResponse } from '../shared/models/GetUserResponse';
 import { AuthResponse } from '../shared/models/AuthResponse';
 import { getUserAction } from './store/actions';
-import { PouchdbService } from '../PouchDB/pouchdb.service';
 import { login } from '../login/store/actions/auth.actions';
 import { authSelector } from '../login/store/selectors/auth.selector';
 
@@ -28,26 +27,26 @@ export class ProfileComponent implements OnInit {
   index: number;
   selectedIndex: number | null = null;
 
-  constructor(private location: Location, private profileSer: profileService, private store: Store, private pouchdbService: PouchdbService) { }
+  constructor(private location: Location, private profileSer: profileService, private store: Store) { }
 
   ngOnInit() {
-    this.pouchdbService.getLatestUser()
-      .then((doc) => {
-        if (doc) { // Check if doc is not undefined
-          const authResponse: AuthResponse = doc.response; // Directly cast to AuthResponse
-          this.store.dispatch(login({ AuthResponse: authResponse }));
-        } else {
-          console.error('No document found in PouchDB');
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching data from PouchDB', err);
-      });
+    // this.pouchdbService.getLatestUser()
+    //   .then((doc) => {
+    //     if (doc) { // Check if doc is not undefined
+    //       const authResponse: AuthResponse = doc.response; // Directly cast to AuthResponse
+    //       this.store.dispatch(login({ AuthResponse: authResponse }));
+    //     } else {
+    //       console.error('No document found in PouchDB');
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.error('Error fetching data from PouchDB', err);
+    //   });
 
     this.store.select(authSelector).subscribe(authResponse => {
       this.getCredentials = authResponse;
       if (this.getCredentials) {
-        this.profileSer.getUserAccount(this.getCredentials.user).subscribe(res => {
+        this.profileSer.getUserAccount(this.getCredentials.credentials).subscribe(res => {
           this.username = res.userAccount.username;
           this.mobile = res.userAccount.mobile;
           this.otherQuestion = res.userAccount.question;

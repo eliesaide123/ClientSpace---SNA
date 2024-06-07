@@ -1,29 +1,28 @@
 import { Injectable } from "@angular/core";
-import { Actions, ofType } from "@ngrx/effects";
-import { AuthResponse } from "../../../shared/models/AuthResponse";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { login } from "../actions/auth.actions";
-import { map, tap } from "rxjs/operators";
-import { PouchdbService } from "../../../PouchDB/pouchdb.service";
-debugger;
+import { tap } from "rxjs/operators";
+import { StorageService } from "../../../PouchDB/storage.service";
+debugger
 @Injectable()
 export class AuthEffect {
-  constructor(private actions$: Actions, private pouchdbService: PouchdbService) {
-    debugger;
+  
+  constructor(private actions$: Actions, private storageService: StorageService) {}
+  
+  saveAuthResponseToIndexedDB$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(login),
-      map(action => (action as any).AuthResponse),
-      tap((authResponse: AuthResponse) => {
-        // Save AuthResponse into PouchDB
-        debugger;
-        this.pouchdbService.addItem({
-          _id: 'SNA_DB',
-          response: authResponse
-        }).then(() => {
-          console.log('AuthResponse saved in PouchDB');
-        }).catch(err => {
-          console.error('Failed to save AuthResponse in PouchDB', err);
-        });
+      ofType(login), // Listen to login action
+      tap(action => {
+        debugger
+        this.storageService.addDB(action.AuthResponse, 'AuthResponseCredentials', 'AuthCredentialsStore')
+          .then(() => {
+            console.log('AuthResponse saved to IndexedDB successfully');
+          })
+          .catch(error => {
+            console.error('Error saving AuthResponse to IndexedDB:', error);
+          });
       })
-    ).subscribe();
-  }
+    ),
+    { dispatch: false } // Disable dispatching since we don't want to emit any new actions
+  );
 }

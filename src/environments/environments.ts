@@ -7,4 +7,5 @@ export const environment = {
     CompanyLinkedIn: "https://www.linkedin.com/company/allianz-sna",
     CompanyInstragram: "https://www.instagram.com/allianz_sna",
     CompanyYoutube: "https://www.youtube.com/channel/UCLWWX8aMOLCmYprQlLiHPhw",
+    GRID_PAGE_SIZE: 8
 }
