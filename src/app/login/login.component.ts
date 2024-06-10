@@ -7,7 +7,8 @@ import { login } from './store/actions/auth.actions';
 import { Store } from '@ngrx/store';
 import { UserCredentials } from '../shared/models/UserCredentials';
 import { BaseComponent } from '../shared/BaseComponent';
-import { StorageService } from '../PouchDB/storage.service';
+import { StorageService } from '../IndexedDB/storage.service';
+import { authSelector } from './store/selectors/auth.selector';
 
 @Component({
   selector: 'app-login',
@@ -56,14 +57,13 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.form.valid) {
-      if (this.sessionId) {
-        debugger;
+      if (this.sessionId) {        
         const username = this.form.get('userid')?.value;
         const password = this.form.get('password')?.value;
         const rememberMe = this.form.get('rememberMe')?.value;
 
-        const clientType = 'P'; // Adjust as needed
-        const isFirstLogin = false; // Adjust as needed
+        const clientType = 'P';
+        const isFirstLogin = false;
 
         const credentials: UserCredentials = {
           username: username,
@@ -73,27 +73,19 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
           sessionID: this.sessionId
         };
 
-        this.subscriptions.push(this.authService.loginUser(credentials)
-          .pipe(
-            take(1),
-            tap(async AuthResponse => {
-              this.store.dispatch(login({ AuthResponse }))
-              if (AuthResponse.credentials.isAuthenticated) {
-                if (AuthResponse.credentials.isFirstLogin) {
-                  this.router.navigateByUrl('/profile')
-                } else {
-                  this.router.navigateByUrl('/client-policies')
-                }
+        this.store.dispatch(login({ credentials }));
+
+        this.subscriptions.push(this.store.select(authSelector).subscribe((authState) => {
+          if (authState) {
+            if (authState.credentials.isAuthenticated) {
+              if (authState.credentials.isFirstLogin) {
+                this.router.navigateByUrl('/profile');
+              } else {
+                this.router.navigateByUrl('/client-policies');
               }
-            }),
-            catchError(err => {
-              console.error("Failed to login: " + err)
-              return err;
-            })
-          )
-          .subscribe(
-            () => console.log("Login Success")
-          ))
+            }
+          }
+        }));
       } else {
         alert('Session ID is null');
       }

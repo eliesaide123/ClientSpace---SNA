@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
+import { UserCredentials } from '../../shared/models/UserCredentials';
+import { AuthResponse } from '../../shared/models/AuthResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class AuthenticationService {
     return this.http.get<any>(url);
   }
 
-  loginUser(credentials: any): Observable<any> {  
+  loginUser(credentials: UserCredentials): Observable<AuthResponse> {  
     return this.http.post<any>(`${environment.BASE_URL_API}/api/Authenticate/login-user`, credentials)
   }
 

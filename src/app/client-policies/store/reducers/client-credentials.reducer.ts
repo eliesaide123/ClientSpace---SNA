@@ -1,25 +1,25 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadClientCredentialsSuccess } from '../actions/client-policies.action';
-import { UserCredentials } from '../../../shared/models/UserCredentials';
+import { loadClientCredentialsFromIndexedDBSuccess } from '../actions/client-credentials.action';
+import { AuthResponse } from '../../../shared/models/AuthResponse';
 
 export const reducerFeatureKey = 'clientCredentials';
 
 export interface ClientCredentialsState {
-  clientCredentials : UserCredentials | null
+  clientCredentials: AuthResponse | null
 }
 
 export const initialState: ClientCredentialsState = {
-  clientCredentials : null
+  clientCredentials: null
 };
 
 export const ClientCredentialsReducer = createReducer(
   initialState,
-  on(loadClientCredentialsSuccess, (state, { clientCredentials }) => {
+  on(loadClientCredentialsFromIndexedDBSuccess, (state, action) => {
+    debugger
     return {
       ...state,
-      clientCredentials: clientCredentials
+      clientCredentials: action.clientCredentials
     }
-  }
-  )
+  })
 );
 

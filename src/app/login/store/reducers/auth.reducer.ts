@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { AuthResponse } from '../../../shared/models/AuthResponse';
 import { AuthAction } from '../actions';
 
-export const reducerFeatureKey = 'aaaaaaauth';
+export const reducerFeatureKey = 'auth';
 
 export interface AuthState {
   AuthResponse: AuthResponse | null
@@ -14,10 +14,10 @@ export const initialAuthState: AuthState = {
 
 export const authReducer = createReducer(  
   initialAuthState,
-  on(AuthAction.login, (state, action) => {
+  on(AuthAction.loginSuccess, (state, action) => {
     return{      
       ...state,      
-      AuthResponse: action.AuthResponse
+      AuthResponse: action.authResponse
     }
   })
 );

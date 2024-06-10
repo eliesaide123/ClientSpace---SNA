@@ -30,19 +30,6 @@ export class ProfileComponent implements OnInit {
   constructor(private location: Location, private profileSer: profileService, private store: Store) { }
 
   ngOnInit() {
-    // this.pouchdbService.getLatestUser()
-    //   .then((doc) => {
-    //     if (doc) { // Check if doc is not undefined
-    //       const authResponse: AuthResponse = doc.response; // Directly cast to AuthResponse
-    //       this.store.dispatch(login({ AuthResponse: authResponse }));
-    //     } else {
-    //       console.error('No document found in PouchDB');
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.error('Error fetching data from PouchDB', err);
-    //   });
-
     this.store.select(authSelector).subscribe(authResponse => {
       this.getCredentials = authResponse;
       if (this.getCredentials) {
