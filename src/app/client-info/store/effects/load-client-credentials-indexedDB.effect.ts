@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { StorageService } from "../../../IndexedDB/storage.service";
 import { catchError, from, map, mergeMap, of, switchMap, tap } from "rxjs";
 import { Injectable } from "@angular/core";
-import { loadCheckRoleFromIndexedDB, loadCheckRoleFromIndexedDBFailure, loadCheckRoleFromIndexedDBSuccess, loadClientCredentialsFromIndexedDB, loadClientCredentialsFromIndexedDBFailure, loadClientCredentialsFromIndexedDBSuccess } from "../actions/load-client-credentials-indexedDB.action";
+import { loadClientCredentialsFromIndexedDB, loadClientCredentialsFromIndexedDBFailure, loadClientCredentialsFromIndexedDBSuccess } from "../actions/load-client-credentials-indexedDB.action";
 import { AuthenticationService } from "../../../login/service/authentication.service";
 import { AuthResponse } from "../../../shared/models/AuthResponse";
 import { checkRoles } from "../../../shared/models/checkRoles";
@@ -24,21 +24,6 @@ export class LoadClientCredentialsFromIndexedDB {
                 }
             }),
             catchError(error => of(loadClientCredentialsFromIndexedDBFailure({ error })))
-        ))
-    ));
-
-    loadCheckRoleFromDB$ = createEffect(() => this.actions$.pipe(
-        ofType(loadCheckRoleFromIndexedDB),
-        mergeMap(() => this.storageService.getDB<checkRoles>("CheckRole", "CheckRoleStore").pipe(
-            map((checkRoles: checkRoles | null) => {                
-                if (checkRoles) {   
-                    debugger;                 
-                    return loadCheckRoleFromIndexedDBSuccess({ checkRoles: checkRoles });
-                } else {
-                    return loadCheckRoleFromIndexedDBFailure({ error: "CheckRoles is null" });
-                }
-            }),
-            catchError(error => of(loadCheckRoleFromIndexedDBFailure({ error })))
         ))
     ));
 }

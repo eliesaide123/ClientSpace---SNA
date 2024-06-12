@@ -1,9 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { LoadClientCredentialsIndexedDBActions } from '../actions';
 import { AuthResponse } from '../../../shared/models/AuthResponse';
-import { loadCheckRoleFromIndexedDBSuccess } from '../actions/load-client-credentials-indexedDB.action';
-import { checkRoles } from '../../../shared/models/checkRoles';
-
 export const reducerFeatureKey = 'clientCredentials';
 
 export interface LoadClientCredentialsFromIndexedDBState {
