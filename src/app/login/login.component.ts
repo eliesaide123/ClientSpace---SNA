@@ -8,7 +8,6 @@ import { Store } from '@ngrx/store';
 import { UserCredentials } from '../shared/models/UserCredentials';
 import { BaseComponent } from '../shared/BaseComponent';
 import { StorageService } from '../IndexedDB/storage.service';
-import { authSelector } from './store/selectors/auth.selector';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +47,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         () => alert("Session ID: " + this.sessionId)
-      ))
+      ))      
   }
 
   togglePasswordVisibility() {
@@ -75,17 +74,6 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
         this.store.dispatch(login({ credentials }));
 
-        this.subscriptions.push(this.store.select(authSelector).subscribe((authState) => {
-          if (authState) {
-            if (authState.credentials.isAuthenticated) {
-              if (authState.credentials.isFirstLogin) {
-                this.router.navigateByUrl('/profile');
-              } else {
-                this.router.navigateByUrl('/client-policies');
-              }
-            }
-          }
-        }));
       } else {
         alert('Session ID is null');
       }

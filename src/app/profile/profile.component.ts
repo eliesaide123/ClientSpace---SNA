@@ -39,14 +39,11 @@ export class ProfileComponent implements OnInit {
           this.otherQuestion = res.userAccount.question;
           this.answer = res.userAccount.answer;
           this.email = res.userAccount.email;
-          this.questions = res.questions
-
-          debugger
+          this.questions = res.questions          
 
           if (!this.questions.includes(this.question)) {
             this.question = this.questions[this.questions.length - 1]
-            this.index = this.questions.indexOf(this.question)
-            debugger;
+            this.index = this.questions.indexOf(this.question)            
           }
           const event = {target: {selectedIndex: this.index}} as unknown as Event;
 
@@ -56,8 +53,7 @@ export class ProfileComponent implements OnInit {
     });    
   }
 
-  onQuestionChange(event: Event): void {
-    debugger;
+  onQuestionChange(event: Event): void {    
     const selectElement = event.target as HTMLSelectElement;
     const selectedOptionIndex = selectElement.selectedIndex;
 

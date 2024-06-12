@@ -8,8 +8,7 @@ export class StorageService {
 
   constructor() {}
 
-  addDB(item: any, dbName: string, storeName: string): Promise<void> {
-    debugger;
+  addDB(item: any, dbName: string, storeName: string): Promise<void> {    
     return new Promise<void>((resolve, reject) => {
       const request = window.indexedDB.open(dbName);
 
@@ -46,8 +45,7 @@ export class StorageService {
 
   getDB<T>(dbName: string, storeName: string): Observable<T | null> {
     return new Observable<T | null>((observer) => {
-      const request = window.indexedDB.open(dbName);
-  
+      const request = window.indexedDB.open(dbName);  
       request.onerror = (event: Event) => {
         console.error("IndexedDB error:", event);
         observer.error(event);
@@ -60,7 +58,7 @@ export class StorageService {
   
         const getRequest = objectStore.getAll(); // Retrieve all data from the object store
   
-        getRequest.onsuccess = (event: Event) => {
+        getRequest.onsuccess = (event: Event) => {          
           const data = (event.target as IDBRequest).result;
           if (data && data.length > 0) {
             observer.next(data[0]); // Emit the first item in the store

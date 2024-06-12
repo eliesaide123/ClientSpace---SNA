@@ -1,8 +1,10 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from "@ngrx/store";
-import { ClientCredentialsReducer, ClientCredentialsState } from "./client-credentials.reducer";
+import { LoadClientCredentialsFromIndexedDBReducer, LoadClientCredentialsFromIndexedDBState } from "./load-client-credentials-indexedDB.reducer";
+import { CheckRoleState, CheckRolesReducer } from "./client-policies.reducer";
 
 export interface PoliciesState{
-    clientCredentials: ClientCredentialsState
+    clientCredentials: LoadClientCredentialsFromIndexedDBState,
+    checkRole: CheckRoleState
 }
 
 export const getPoliciesState = createFeatureSelector<PoliciesState>(
@@ -15,8 +17,9 @@ export const getPoliciesContentState = createSelector(
 );
 
 export const PolciesManagementReducers: ActionReducerMap<PoliciesState> = {
-    clientCredentials: ClientCredentialsReducer
+    clientCredentials: LoadClientCredentialsFromIndexedDBReducer,
+    checkRole: CheckRolesReducer
 }
 
-// export * from './client-policies.reducer';
-export * from './client-credentials.reducer';
+export * from './load-client-credentials-indexedDB.reducer';
+export * from './client-policies.reducer';

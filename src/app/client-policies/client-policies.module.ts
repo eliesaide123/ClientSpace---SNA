@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
-import { ClientCredentialsEffect } from './store/effects/client-credentials.effect';
 import { SharedModule } from '../shared/shared.module';
 import { ClientPoliciesComponent } from './client-policies.component';
 import { StoreModule } from '@ngrx/store';
-import * as fromClientPolicies from './store/reducers/client-credentials.reducer';
+import * as fromClientPolicies from './store/reducers/load-client-credentials-indexedDB.reducer';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PolciesManagementReducers } from './store/reducers';
+import { ClientPoliciesEffects } from './store/effects';
 
 
 
@@ -23,8 +23,8 @@ import { PolciesManagementReducers } from './store/reducers';
         component: ClientPoliciesComponent
       },
     ]),      
-    StoreModule.forFeature(fromClientPolicies.reducerFeatureKey, PolciesManagementReducers),
-    EffectsModule.forFeature([ClientCredentialsEffect])
+    StoreModule.forFeature("clientCredentials", PolciesManagementReducers),
+    EffectsModule.forFeature(ClientPoliciesEffects)
   ],
   declarations: [ClientPoliciesComponent]
   

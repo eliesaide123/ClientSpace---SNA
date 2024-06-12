@@ -1,10 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { ClientCredentialsState } from "../reducers";
+import { PoliciesState } from "../reducers";
 
-debugger
-export const selectClientCredentialsState = createFeatureSelector<ClientCredentialsState>("clientCredentials");
+export const selectClientCredentialsState = createFeatureSelector<PoliciesState>("clientCredentials");
 
 export const clientCredentialsSelector = createSelector(    
-    selectClientCredentialsState,
-    clientCredentials => clientCredentials.clientCredentials
+    selectClientCredentialsState,    
+    (state: PoliciesState) => state.clientCredentials.clientCredentials
 )

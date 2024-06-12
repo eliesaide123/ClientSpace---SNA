@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { AuthResponse } from '../../../shared/models/AuthResponse';
 import { AuthAction } from '../actions';
 
-export const reducerFeatureKey = 'auth';
+export const reducerFeatureKey = 'LoginAuth';
 
 export interface AuthState {
   AuthResponse: AuthResponse | null

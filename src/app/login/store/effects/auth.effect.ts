@@ -5,11 +5,12 @@ import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { StorageService } from "../../../IndexedDB/storage.service";
 import { AuthenticationService } from "../../service/authentication.service";
 import { of } from "rxjs";
+import { Route, Router } from "@angular/router";
 
 @Injectable()
 export class AuthEffect {
   
-  constructor(private actions$: Actions, private storageService: StorageService, private authService: AuthenticationService) {}
+  constructor(private actions$: Actions, private storageService: StorageService, private authService: AuthenticationService, private router : Router) {}
   
   saveAuthResponseToIndexedDB$ = createEffect(() =>
     this.actions$.pipe(
@@ -38,5 +39,21 @@ export class AuthEffect {
         )
       )
     )
+  );
+
+  loginSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loginSuccess),
+      map(({ authResponse }) => {
+        if (authResponse && authResponse.credentials.isAuthenticated) {
+          if (authResponse.credentials.isFirstLogin) {
+            this.router.navigateByUrl('/profile');
+          } else {
+            this.router.navigateByUrl('/client-policies');
+          }
+        }
+      })
+    ),
+    { dispatch: false }
   );
 }
