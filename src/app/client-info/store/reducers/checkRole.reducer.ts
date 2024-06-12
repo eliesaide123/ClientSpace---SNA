@@ -2,18 +2,16 @@ import { createReducer, on } from "@ngrx/store"
 import { checkRolesResponse } from "../../../shared/models/checkRolesResponse"
 import { CheckRolesActions } from "../actions"
 
-export const key = "CheckRole"
-
 export interface CheckRoleState{
     checkRole : checkRolesResponse | null
 }
 
-export const initState : CheckRoleState = {
+export const CheckRoleInitialState : CheckRoleState = {
     checkRole: null
 }
 
 export const CheckRolesReducer = createReducer(
-    initState,
+  CheckRoleInitialState,
     on(CheckRolesActions.checkRoleSuccess, (state, action) => {        
         return {
           ...state,

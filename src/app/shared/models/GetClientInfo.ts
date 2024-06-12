@@ -1,6 +1,6 @@
 import { UserCredentials } from "./UserCredentials";
 
-export interface getClientPolicies{
+export interface getClientInfo{
      credentials : UserCredentials,
      roleId: string,
      gridSize: number,
