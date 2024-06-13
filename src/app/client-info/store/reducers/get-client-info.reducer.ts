@@ -1,9 +1,10 @@
 import { createReducer, on } from "@ngrx/store";
 import { getClientInfo } from "../../../shared/models/GetClientInfo";
 import { GetClientInfoActions } from '../actions'
+import { ClientInfo } from "../../../shared/models/clientInfo";
 
 export interface getClientInfoState {
-    getClientInfo: getClientInfo | null
+    getClientInfo: ClientInfo | null
 }
 
 export const getClientInfoInitialState: getClientInfoState = {

@@ -25,7 +25,7 @@ import { ClientInfoModule } from './client-info/client-info.module';
     HttpClientModule,
     SharedModule,  
     AuthModule,
-    ClientInfoModule,  
+    ClientInfoModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([])

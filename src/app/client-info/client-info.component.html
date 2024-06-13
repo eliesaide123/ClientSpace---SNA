@@ -7,7 +7,8 @@
         <i class="bi bi-person-fill">
             <span> Role: <span>{{role}}</span></span>
         </i>
-        <span style="color: white">User: <span>{{username}}</span></span>
+        <span style="color: white">User: <span>{{username}}</span></span> &nbsp;&nbsp;&nbsp;
+        <span style="color: white">Pin: <span>{{pin}}</span></span>        
     </div>
 </div>
 
@@ -22,20 +23,29 @@
     <span>Kindly Press my profile to complete your KYC</span>
 </div>
 
-<hr>
+<hr style="margin-bottom:10px;">
 
-<div>
-    <div>
-        <span>Name</span>
-        <input type="text" [(ngModel)]="username">
-        <span>Date Of Birth</span>
-        <input type="text" [(ngModel)]="username">
-        <span>Marital Status</span>
-        <input type="text" [(ngModel)]="username">
+<div class="flex main-client-info">
+    <div class="flex-row">
+        <div class="client-info">
+            <div class="blue-flexboxes">
+                <span class="blue-container">Name</span>
+                <span>{{username}}</span>
+            </div>
+            <div class="flex blue-flexboxes">
+                <span class="blue-container">Date Of Birth</span>
+                <span>{{dateOfBirth}}</span>
+            </div>
+            <div class="blue-flexboxes">
+                <span class="blue-container">Marital Status</span>
+                <span>{{maritalStatus}}</span>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <span>Contact Address</span>
-        <input type="text">
+    <div class="client-address">
+        <span class="blue-container">Contact Address</span>
+        <span class="address-span" *ngIf="address" [innerHTML]="address">{{address}}</span>
     </div>
 </div>
+
+<!-- <app-dropdown-client-info></app-dropdown-client-info> -->

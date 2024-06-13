@@ -20,8 +20,7 @@ export class ClientPoliciesService {
         return this.http.post<any>(`${environment.BASE_URL_API}/api/Portfolio/get-portfolio`, credentials)
     }
 
-    getClientInfo(credentials: getClientInfo): Observable<any>{
-        debugger
+    getClientInfo(credentials: getClientInfo): Observable<any>{        
         return this.http.post<any>(`${environment.BASE_URL_API}/api/Authenticate/get-client-info`, credentials)
     }
 

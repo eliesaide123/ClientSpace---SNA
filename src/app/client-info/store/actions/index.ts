@@ -1,6 +1,6 @@
-import * as CheckRolesActions from './check-roles.actions'
+import * as CheckRolesActions from './check-roles.action'
 import * as LoadClientCredentialsIndexedDBActions from './load-client-credentials-indexedDB.action'
-import * as GetClientInfoActions from './get-client-info.actions'
+import * as GetClientInfoActions from './get-client-info.action'
 
 export {
     CheckRolesActions,

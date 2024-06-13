@@ -16,8 +16,7 @@ export class LoadClientCredentialsFromIndexedDB {
         ofType(loadClientCredentialsFromIndexedDB),
         mergeMap(() => this.storageService.getDB<AuthResponse>("AuthResponseCredentials", "AuthCredentialsStore").pipe(
             map((authResponse: AuthResponse | null) => {                
-                if (authResponse) { 
-                    debugger;                   
+                if (authResponse) {                                      
                     return loadClientCredentialsFromIndexedDBSuccess({ clientCredentials: authResponse });
                 } else {
                     return loadClientCredentialsFromIndexedDBFailure({ error: "AuthResponse is null" });

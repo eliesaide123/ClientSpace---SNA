@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { clientCredentialsSelector } from './store/selectors/client-credentials.selector';
 import { UserCredentials } from '../shared/models/UserCredentials';
-import { checkRoleRequest } from './store/actions/check-roles.actions';
+import { checkRoleRequest } from './store/actions/check-roles.action';
 import { BaseComponent } from '../shared/BaseComponent';
 import { loadClientCredentialsFromIndexedDB } from './store/actions/load-client-credentials-indexedDB.action';
-import { checkRoleSelector } from './store/selectors/check-role.selectors';
-import { getClientInfoRequest } from './store/actions/get-client-info.actions';
+import { checkRoleSelector } from './store/selectors/check-role.selector';
+import { getClientInfoRequest } from './store/actions/get-client-info.action';
 import { getClientInfo } from '../shared/models/GetClientInfo';
 import { environment } from '../../environments/environment.prod';
 import { take, switchMap, filter } from 'rxjs/operators';
+import { clientInfoSelector } from './store/selectors/get-client-info.selector';
 
 @Component({
   selector: 'app-client-info',
@@ -21,6 +22,13 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
   extendedCredentials: getClientInfo;
   role: string;
   username: string;
+  pin: string;
+  day: number;
+  month: number;
+  year: number;
+  dateOfBirth: string;
+  maritalStatus: string;
+  address: string;
 
   constructor(private store: Store) {
     super();
@@ -58,7 +66,7 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
       ).subscribe((item: any) => {
         this.role = item.success.role;
         this.username = item.success.userName;
-
+        this.pin = item.success.pin
         // Prepare the extended credentials object
         this.extendedCredentials = {
           credentials: this.myCredentials,
@@ -70,7 +78,25 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
 
         // Dispatch get client info request
         this.store.dispatch(getClientInfoRequest({ getClientInfo: this.extendedCredentials }));
+
+        this.subscriptions.push(
+          this.store.select(clientInfoSelector).pipe(
+            filter(info => !!info)
+          ).subscribe((info: any) => {
+            if (info && info.getClientInfo && info.getClientInfo.person) {
+              this.day = info.getClientInfo.person.doB_Day;
+              this.month = info.getClientInfo.person.doB_Month;
+              this.year = info.getClientInfo.person.doB_Year;
+              this.dateOfBirth = `${this.day}/${this.month}/${this.year}`;
+              this.maritalStatus = info.getClientInfo.person.marital;
+              this.address = this.formatAddress(info.getClientInfo.person.address);
+            }
+          }))
       })
     );
+  }
+
+  formatAddress(address: string): string {
+    return `<i>${address.replace(/rn/g, '<br>')}</i>`;
   }
 }

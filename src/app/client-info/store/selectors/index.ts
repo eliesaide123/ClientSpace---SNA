@@ -1,2 +1,2 @@
-export * from './check-role.selectors'
+export * from './check-role.selector'
 export * from './client-credentials.selector'

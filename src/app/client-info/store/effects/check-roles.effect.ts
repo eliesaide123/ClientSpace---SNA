@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { checkRolesResponse } from "../../../shared/models/checkRolesResponse";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 import { Injectable } from "@angular/core";
-import { checkRoleFailure, checkRoleRequest, checkRoleSuccess } from "../actions/check-roles.actions";
+import { checkRoleFailure, checkRoleRequest, checkRoleSuccess } from "../actions/check-roles.action";
 import { AuthenticationService } from "../../../login/service/authentication.service";
 import { StorageService } from "../../../IndexedDB/storage.service";
 
@@ -22,22 +22,6 @@ export class CheckRoles{
             console.error('Error while checking Roles', error);
             return of(checkRoleFailure({ error }))
         })        
-    ))
-
-    checkRoleSuccess$ = createEffect(() =>
-        this.actions$.pipe(
-          ofType(checkRoleSuccess), // Listen to login action
-          tap(action => {        
-            this.storageService.addDB(action.checkRoles, 'CheckRole', 'CheckRoleStore')
-              .then(() => {
-                console.log('CheckRole saved to IndexedDB successfully');
-              })
-              .catch(error => {
-                console.error('Error saving CheckRole to IndexedDB:', error);
-              });
-          })
-        ),
-        { dispatch: false } // Disable dispatching since we don't want to emit any new actions
-      );
+    ))    
 }
 
