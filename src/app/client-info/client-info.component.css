@@ -1,9 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;1,600&display=swap');
-/* :root{
-    --fsLarge : 3rem;
-    --fsMed : 2rem;
-    --fsRole:1.6rem;
-} */
 
 *{
     margin:0;
@@ -36,12 +31,11 @@
     cursor: pointer;
 }
 
-
 .main-client-info{
     display:flex;
     flex-direction: row;
     width:100%;
-    gap:200px;
+    gap: 200px;
     background-color: #f2f2f2;
     padding: 3px 0;
 }
@@ -76,21 +70,19 @@
 .blue-container{
     background-color: #cfe9ee;  
     padding:5px 6px;    
-    width:450px;
-    /* font-weight: bold; */
+    width:450px;    
     font-family: "Raleway SemiBold";
 }
 
 .blue-container + span {
     background-color: #ffffffff;
     width:100%;
-    padding: 5px;
-    /* font-weight: bold; */
+    padding: 5px;    
     font-family: "Raleway SemiBold";
 }
 
 .address-span{
     width:100%;
     font-size: 13px;
-    font-weight:normal!important;
+    font-weight: normal!important;
 }

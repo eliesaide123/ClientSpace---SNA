@@ -8,13 +8,15 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PolciesManagementReducers } from './store/reducers';
 import { ClientPoliciesEffects } from './store/effects';
+import { DropdownClientInfoModule } from '../dropdown-client-info/dropdown-client-info.module';
+import { DropdownClientInfoComponent } from '../dropdown-client-info/dropdown-client-info.component';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule,
+    SharedModule,    
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild([
@@ -26,7 +28,7 @@ import { ClientPoliciesEffects } from './store/effects';
     StoreModule.forFeature("clientCredentials", PolciesManagementReducers),
     EffectsModule.forFeature(ClientPoliciesEffects)
   ],
-  declarations: [ClientInfoComponent]
+  declarations: [ClientInfoComponent, DropdownClientInfoComponent]
   
   
 })
