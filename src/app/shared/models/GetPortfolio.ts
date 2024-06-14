@@ -1,6 +1,6 @@
 import { UserCredentials } from "./UserCredentials";
 
-export interface getClientInfo{
+export interface GetPortfolio{
      credentials : UserCredentials,
      roleId: string,
      gridSize: number,

@@ -8,8 +8,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PolciesManagementReducers } from './store/reducers';
 import { ClientPoliciesEffects } from './store/effects';
-import { DropdownClientInfoModule } from '../dropdown-client-info/dropdown-client-info.module';
 import { DropdownClientInfoComponent } from '../dropdown-client-info/dropdown-client-info.component';
+import { ClientPoliciesComponent } from '../client-policies/client-policies.component';
 
 
 
@@ -28,7 +28,7 @@ import { DropdownClientInfoComponent } from '../dropdown-client-info/dropdown-cl
     StoreModule.forFeature("clientCredentials", PolciesManagementReducers),
     EffectsModule.forFeature(ClientPoliciesEffects)
   ],
-  declarations: [ClientInfoComponent, DropdownClientInfoComponent]
+  declarations: [ClientInfoComponent, DropdownClientInfoComponent, ClientPoliciesComponent]
   
   
 })

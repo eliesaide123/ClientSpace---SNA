@@ -7,7 +7,7 @@ import { BaseComponent } from '../shared/BaseComponent';
 import { loadClientCredentialsFromIndexedDB } from './store/actions/load-client-credentials-indexedDB.action';
 import { checkRoleSelector } from './store/selectors/check-role.selector';
 import { getClientInfoRequest } from './store/actions/get-client-info.action';
-import { getClientInfo } from '../shared/models/GetClientInfo';
+import { GetPortfolio } from '../shared/models/GetPortfolio';
 import { environment } from '../../environments/environment.prod';
 import { take, switchMap, filter } from 'rxjs/operators';
 import { clientInfoSelector } from './store/selectors/get-client-info.selector';
@@ -19,7 +19,7 @@ import { clientInfoSelector } from './store/selectors/get-client-info.selector';
 })
 export class ClientInfoComponent extends BaseComponent implements OnInit {
   myCredentials: UserCredentials;
-  extendedCredentials: getClientInfo;
+  extendedCredentials: GetPortfolio;
   role: string;
   username: string;
   pin: string;

@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { getClientInfoFailure, getClientInfoRequest, getClientInfoSuccess } from "../actions/get-client-info.action";
 import { catchError, exhaustMap, map, of, switchMap } from "rxjs";
 import { ClientPoliciesService } from "../../service/client-policies.service";
-import { getClientInfo } from "../../../shared/models/GetClientInfo";
 import { ClientInfo } from "../../../shared/models/clientInfo";
 
 @Injectable()

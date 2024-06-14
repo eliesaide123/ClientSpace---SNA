@@ -12,10 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './login/auth.module';
 import { ClientInfoModule } from './client-info/client-info.module';
 
-
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent
   ],
   imports: [
     BrowserModule,

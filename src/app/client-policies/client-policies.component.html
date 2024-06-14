@@ -1,0 +1,14 @@
+<div class="grid-container">
+    <div class="grid-item grid-header" *ngFor="let header of headers">
+      {{ header }}
+    </div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.policyNo }}</div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.contactType }}</div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.inception }}</div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.expiry }}</div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.status }}</div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.cY }}</div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.premium }}</div>
+    <div *ngFor="let item of data" class="grid-item">{{ item.frequency }}</div>
+  </div>
+  

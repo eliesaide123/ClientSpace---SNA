@@ -1,10 +1,10 @@
 import { createAction, props } from "@ngrx/store";
-import { getClientInfo } from "../../../shared/models/GetClientInfo";
+import { GetPortfolio } from "../../../shared/models/GetPortfolio";
 import { ClientInfo } from "../../../shared/models/clientInfo";
 
 export const getClientInfoRequest = createAction(
     "[Client Info] Get Client Info Request",
-    props<{getClientInfo : getClientInfo}>()
+    props<{getClientInfo : GetPortfolio}>()
 )
 
 export const getClientInfoSuccess = createAction(
