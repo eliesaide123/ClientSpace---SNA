@@ -14,7 +14,7 @@ export class AuthEffect {
   
   saveAuthResponseToIndexedDB$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(loginSuccess), // Listen to login action
+      ofType(loginSuccess),
       tap(action => {        
         this.storageService.addDB(action.authResponse, 'AuthResponseCredentials', 'AuthCredentialsStore')
           .then(() => {
@@ -25,7 +25,7 @@ export class AuthEffect {
           });
       })
     ),
-    { dispatch: false } // Disable dispatching since we don't want to emit any new actions
+    { dispatch: false }
   );
 
 

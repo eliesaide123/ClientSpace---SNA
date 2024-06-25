@@ -18,6 +18,6 @@ export const LoadClientCredentialsFromIndexedDBReducer = createReducer(
       ...state,
       clientCredentials: action.clientCredentials
     }
-  }),  
+  })
 );
 

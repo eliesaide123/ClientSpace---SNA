@@ -13,6 +13,7 @@ import { take, switchMap, filter } from 'rxjs/operators';
 import { clientInfoSelector } from './store/selectors/get-client-info.selector';
 import { DataSyncService } from '../shared/services/dataSync.service';
 import { StorageService } from '../IndexedDB/storage.service';
+import { LoaderService } from '../shared/loader-spinner/service/loader.service';
 
 @Component({
   selector: 'app-client-info',
@@ -32,12 +33,12 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
   maritalStatus: string;
   address: string;
 
-  constructor(private store: Store, private dataSyncService: DataSyncService, private storageService : StorageService) {
+  constructor(private store: Store, private dataSyncService: DataSyncService, private loaderService: LoaderService) {
     super();
   }
 
   ngOnInit() {    
-    // Dispatch action to load client credentials
+    // Dispatch action to load client credentials    
     this.store.dispatch(loadClientCredentialsFromIndexedDB());
 
     // Subscribe to client credentials

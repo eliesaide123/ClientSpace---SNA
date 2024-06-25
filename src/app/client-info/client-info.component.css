@@ -1,88 +1,140 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;1,600&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;1,600&display=swap'); */
 
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-.flex{
+.flex {
     display: flex;
 }
+
 .blue-line {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
+    justify-content: space-between;
+    padding: 10px;
     background-color: #49648c;
     height: 40px;
 }
 
-.icons-top-header {
+.top-header {
     display: flex;
     align-items: center;
-    margin-left: 15px;
+    height: 10px;
+    justify-content: space-between;
+    width:100%; 
+}
+.icons-top-header{
+    display: flex;
+    align-items: center;
+    height:inherit;
+    width:auto;
+    gap:10px;
 }
 
 .bi {
     color: white;
-    font-size: 1.6em;
+    font-size: 1.5em;
     margin-right: 20px;
     cursor: pointer;
 }
 
-.main-client-info{
-    display:flex;
+.main-client-info {
+    display: flex;
     flex-direction: row;
-    width:100%;
+    width: 100%;
     gap: 200px;
     background-color: #f2f2f2;
     padding: 3px 0;
 }
 
-.flex-row{
+.flex-row {
     display: flex;
     flex-direction: row;
     height: 100%;
-    width:50%;
+    width: 50%;
 }
 
-.client-info{
+.client-info {
     height: inherit;
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 2px;
     width: 100%;
 }
 
-.client-address{
-    height: 100%;    
+.client-address {
+    height: 100%;
     display: flex;
     flex-direction: row;
-    width:50%;
+    width: 50%;
 }
 
-.blue-flexboxes{
-    display:flex;
-    flex-direction: row; 
+.blue-flexboxes {
+    display: flex;
+    flex-direction: row;
 }
 
-.blue-container{
-    background-color: #cfe9ee;  
-    padding:5px 6px;    
-    width:450px;    
+.blue-container {
+    background-color: #cfe9ee;
+    padding: 5px 6px;
+    width: 450px;
     font-family: "Raleway SemiBold";
 }
 
-.blue-container + span {
+.blue-container+span {
     background-color: #ffffffff;
-    width:100%;
-    padding: 5px;    
+    width: 100%;
+    padding: 5px;
     font-family: "Raleway SemiBold";
 }
 
-.address-span{
-    width:100%;
+.address-span {
+    width: 100%;
     font-size: 13px;
-    font-weight: normal!important;
+    font-weight: normal !important;
+}
+
+.role-section {
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    margin: 10px;    
+}
+
+.role-entry {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+}
+
+.bi-person-fill, .bi-house-door, .bi-cart3, .bi-power {
+    display: flex;
+    height: 10px;
+    align-items: center;
+    padding: 5px;
+}
+
+.user-pin-section {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between;
+    gap:20px;
+}
+
+.user-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bi-power{
+    font-size:20px;
+    background-color: red;
+    padding: 4px 5px 5px 5px;
+    border-radius: 50%;
+    height:fit-content;
+    cursor: pointer !important;
 }
