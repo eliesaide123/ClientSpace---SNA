@@ -6,7 +6,7 @@ import { loadClientCredentialsFromIndexedDB, loadClientCredentialsFromIndexedDBF
 import { AuthenticationService } from "../../../login/service/authentication.service";
 import { AuthResponse } from "../../../shared/models/AuthResponse";
 import { checkRoles } from "../../../shared/models/checkRoles";
-
+debugger;
 @Injectable()
 export class LoadClientCredentialsFromIndexedDB {
 
@@ -15,7 +15,8 @@ export class LoadClientCredentialsFromIndexedDB {
     loadAuthFromDB$ = createEffect(() => this.actions$.pipe(
         ofType(loadClientCredentialsFromIndexedDB),
         mergeMap(() => this.storageService.getDB<AuthResponse>("AuthResponseCredentials", "AuthCredentialsStore").pipe(
-            map((authResponse: AuthResponse | null) => {                
+            map((authResponse: AuthResponse | null) => {  
+                debugger;              
                 if (authResponse) {                                      
                     return loadClientCredentialsFromIndexedDBSuccess({ clientCredentials: authResponse });
                 } else {

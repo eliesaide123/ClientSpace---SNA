@@ -12,7 +12,7 @@ export class GetClientInfo{
 
     getClientInfo$ = createEffect(() => this.actions$.pipe(
         ofType(getClientInfoRequest),
-        switchMap((action) => this.clientPolicyService.getClientInfo(action.getClientInfo).pipe(
+        exhaustMap((action) => this.clientPolicyService.getClientInfo(action.getClientInfo).pipe(
             map((getClientInfo : ClientInfo | null) => {
                 return getClientInfoSuccess({getClientInfo : getClientInfo})
             })

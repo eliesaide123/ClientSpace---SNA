@@ -99,6 +99,7 @@ export class StorageService {
 
   deleteAllDatabases(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
+      debugger;
       const request = indexedDB.databases();
 
       request.then((dbInfos: IDBDatabaseInfo[]) => {

@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { checkRolesResponse } from "../../../shared/models/checkRolesResponse";
-import { catchError, map, of, switchMap, tap } from "rxjs";
+import { catchError, exhaustMap, map, of, switchMap, tap } from "rxjs";
 import { Injectable } from "@angular/core";
 import { checkRoleFailure, checkRoleRequest, checkRoleSuccess } from "../actions/check-roles.action";
 import { AuthenticationService } from "../../../login/service/authentication.service";
@@ -13,7 +13,7 @@ export class CheckRoles{
 
     checkRoles$ = createEffect(() => this.actions$.pipe(
         ofType(checkRoleRequest),
-        switchMap(action => this.authService.checkRoles(action.myCredentials).pipe(
+        exhaustMap(action => this.authService.checkRoles(action.myCredentials).pipe(
            map((checkRoles : checkRolesResponse | null) => {            
             return checkRoleSuccess({ checkRoles: checkRoles })
            })

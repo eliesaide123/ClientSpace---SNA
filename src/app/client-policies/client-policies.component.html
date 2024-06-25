@@ -1,14 +1,29 @@
-<div class="grid-container">
-    <div class="grid-item grid-header" *ngFor="let header of headers">
-      {{ header }}
-    </div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.policyNo }}</div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.contactType }}</div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.inception }}</div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.expiry }}</div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.status }}</div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.cY }}</div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.premium }}</div>
-    <div *ngFor="let item of data" class="grid-item">{{ item.frequency }}</div>
-  </div>
-  
+<div class="policies">
+<table>
+  <thead>
+    <tr>
+      <th class="grid-header-column grid-header"></th>
+      <th class="grid-header-column grid-header"></th>
+      <!-- Header Row -->
+      <th class="grid-item grid-header" *ngFor="let header of headers">
+        {{ header }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Data Rows -->
+  <tr *ngFor="let policy of data" class="grid-row">
+    <td class="grid-item"></td>
+    <td class="grid-item"></td>
+    <td class="grid-item">{{ policy.policyNo }}</td>
+    <td class="grid-item">{{ policy.contactType }}</td>
+    <td class="grid-item">{{ policy.inception }}</td>
+    <td class="grid-item">{{ policy.expiry }}</td>
+    <td class="grid-item">{{ policy.status }}</td>
+    <td class="grid-item">{{ policy.cY }}</td>
+    <td class="grid-item">{{ policy.premium }}</td>
+    <td class="grid-item">{{ policy.frequency }}</td>
+  </tr>
+  </tbody>
+</table>
+</div>

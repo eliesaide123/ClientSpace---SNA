@@ -11,6 +11,8 @@ import { GetPortfolio } from '../shared/models/GetPortfolio';
 import { environment } from '../../environments/environment.prod';
 import { take, switchMap, filter } from 'rxjs/operators';
 import { clientInfoSelector } from './store/selectors/get-client-info.selector';
+import { DataSyncService } from '../shared/services/dataSync.service';
+import { StorageService } from '../IndexedDB/storage.service';
 
 @Component({
   selector: 'app-client-info',
@@ -30,11 +32,11 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
   maritalStatus: string;
   address: string;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private dataSyncService: DataSyncService, private storageService : StorageService) {
     super();
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     // Dispatch action to load client credentials
     this.store.dispatch(loadClientCredentialsFromIndexedDB());
 
@@ -43,7 +45,7 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
       this.store.select(clientCredentialsSelector).pipe(
         filter(cred => !!cred),
         take(1),
-        switchMap((cred: any) => {
+        switchMap((cred: any) => {          
           this.myCredentials = {
             username: cred.credentials.username,
             password: cred.credentials.password,
@@ -63,7 +65,7 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
             take(1)
           );
         })
-      ).subscribe((item: any) => {
+      ).subscribe((item: any) => {        
         this.role = item.success.role;
         this.username = item.success.userName;
         this.pin = item.success.pin
@@ -80,9 +82,7 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
         this.store.dispatch(getClientInfoRequest({ getClientInfo: this.extendedCredentials }));
 
         this.subscriptions.push(
-          this.store.select(clientInfoSelector).pipe(
-            filter(info => !!info)
-          ).subscribe((info: any) => {
+          this.store.select(clientInfoSelector).subscribe((info: any) => {
             if (info && info.getClientInfo && info.getClientInfo.person) {
               this.day = info.getClientInfo.person.doB_Day;
               this.month = info.getClientInfo.person.doB_Month;
@@ -90,6 +90,9 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
               this.dateOfBirth = `${this.day}/${this.month}/${this.year}`;
               this.maritalStatus = info.getClientInfo.person.marital;
               this.address = this.formatAddress(info.getClientInfo.person.address);
+
+              // Notify the shared service that client info is loaded
+              this.dataSyncService.setClientInfoLoaded(true);
             }
           }))
       })

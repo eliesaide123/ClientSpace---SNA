@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserCredentials } from '../shared/models/UserCredentials';
-import { clientCredentialsSelector } from '../client-info/store/selectors';
-import { exhaustMap, filter, of, switchMap, take, tap } from 'rxjs';
+import { checkRoleSelector, clientCredentialsSelector } from '../client-info/store/selectors';
+import { exhaustMap, filter, switchMap, take } from 'rxjs';
 import { BaseComponent } from '../shared/BaseComponent';
+import { GetPortfolio } from '../shared/models/GetPortfolio';
+import { ClientPoliciesRequest } from './store/actions/client-policies.action';
+import { ClientPoliciesSelector } from './store/selectors/client-policies.reducer';
+import { DataSyncService } from '../shared/services/dataSync.service';
 
 @Component({
   selector: 'app-client-policies',
@@ -13,38 +17,65 @@ import { BaseComponent } from '../shared/BaseComponent';
 export class ClientPoliciesComponent extends BaseComponent implements OnInit {
   
   myCredentials: UserCredentials;
-  headers: string[] = ['', '', 'Policy No', 'Contact Type', 'Inception', 'Expiry', 'Status', 'C/Y', 'Premium', 'Frequency'];
-  data: any[] = [
-    { policyNo: 'P123', contactType: 'Type A', inception: '2021-01-01', expiry: '2022-01-01', status: 'Active', cY: 'C', premium: 100, frequency: 'Annual' },
-    { policyNo: 'P124', contactType: 'Type B', inception: '2021-02-01', expiry: '2022-02-01', status: 'Expired', cY: 'Y', premium: 200, frequency: 'Monthly' },
-    // Add more data as needed
-  ];
+  extendedCredentials: GetPortfolio;
 
-  constructor(private store: Store) {
+  headers: string[] = ['Policy No', 'Contact Type', 'Inception', 'Expiry', 'Status', 'C/Y', 'Premium', 'Frequency'];
+  data: any[] = [];
+  policyNo: string;
+
+  constructor(private store: Store, private dataSyncService: DataSyncService) {
     super()
   }
 
   ngOnInit() {
-    this.subscriptions.push(this.store.select(clientCredentialsSelector).pipe(
-      filter(cred => !!cred),
-      take(1),
-      switchMap((cred: any) => {
-        debugger
-        this.myCredentials = {
-          username: cred.credentials.username,
-          password: cred.credentials.password,
-          userID: cred.credentials.userID,
-          clientType: cred.credentials.clientType,
-          isAuthenticated: cred.credentials.isAuthenticated,
-          isFirstLogin: cred.credentials.isFirstLogin,
-          sessionID: cred.credentials.sessionID
-        };        
+    // Wait until client info is loaded
+    this.subscriptions.push(
+      this.dataSyncService.clientInfoLoaded$.pipe(
+        filter(isLoaded => isLoaded),
+        take(1),
+        switchMap(() => this.store.select(clientCredentialsSelector).pipe(
+          filter(cred => !!cred),
+          take(1),
+          exhaustMap((cred: any) => {
+            console.log('Client Credentials:', cred);
+            this.myCredentials = {
+              sessionID: cred.credentials.sessionID
+            };
+            return this.store.select(checkRoleSelector).pipe(
+              filter(item => !!item),
+              take(1)
+            );
+          })
+        ))
+      ).subscribe((item: any) => {
+        console.log('Role:', item);
+        this.extendedCredentials = {
+          credentials: this.myCredentials,
+          roleId: item.success.roleID,
+          gridSize: 8,
+          direction: 'N',
+          startIndex: 0
+        };
 
-        
+        this.store.dispatch(ClientPoliciesRequest({ clientPolicies: this.extendedCredentials }));
 
-        return of(this.myCredentials);
+        this.store.select(ClientPoliciesSelector).subscribe((clientPolicies) => {
+          if (clientPolicies) {
+            this.data = clientPolicies.map((item) => {
+              return {
+                policyNo: item.policyNo,
+                contactType: item.holderName,
+                inception: item.inception,
+                expiry: item.expiry,
+                status: item.status_Code,
+                cY: item.cur_Code,
+                premium: item.total_Premium,
+                frequency: item.pay_Frq
+              };
+            });
+          }
+        });
       })
-    ).subscribe(() => console.log("hello")));
+    );
   }
-
 }

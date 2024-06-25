@@ -1,18 +1,30 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr); /* 8 columns for the 8 headers */
-    gap: 10px;
-    padding: 10px;
-  }
-  
-  .grid-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .grid-header {
-    font-weight: bold;
-    background-color: #f4f4f4;
-  }
-  
+.policies{
+  width:100%;
+  padding:5px;
+}
+
+table{
+  width:100%;
+}
+
+.grid-item {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+  width: fit-content;
+}
+
+.grid-header-column {
+  width: 50px !important;
+}
+
+.grid-header{
+  background-color: #49648c;
+  color:#ffffffff;
+  font-weight: bold;
+}
+
+tr:hover{
+  background:#7e8ea7;
+  color: #ffffffff;
+}

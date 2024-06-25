@@ -1,5 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { GetPortfolio } from "../../../shared/models/GetPortfolio";
+import { GetClientInfo } from "../../../shared/models/GetClientInfo";
+
 
 export const ClientPoliciesRequest = createAction(
     "[Client Policy Request] Client Policies",
@@ -7,8 +9,8 @@ export const ClientPoliciesRequest = createAction(
 )
 
 export const ClientPoliciesSuccess = createAction(
-    "[Client Policy Success] Client Policies Success" 
-    // props<{clientPolicies: getClientInfo}>()
+    "[Client Policy Success] Client Policies Success",
+    props<{clientPolicies: GetClientInfo}>()
 )
 
 export const ClientPoliciesFailure = createAction(
