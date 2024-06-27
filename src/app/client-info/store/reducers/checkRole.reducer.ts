@@ -1,7 +1,6 @@
 import { createReducer, on } from "@ngrx/store"
 import { checkRolesResponse } from "../../../shared/models/checkRolesResponse"
 import { CheckRolesActions } from "../actions"
-import {logout} from '../actions/logout.action'
 
 export interface CheckRoleState{
     checkRole : checkRolesResponse | null

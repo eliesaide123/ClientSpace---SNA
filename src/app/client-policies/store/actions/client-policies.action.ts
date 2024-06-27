@@ -2,7 +2,6 @@ import { createAction, props } from "@ngrx/store";
 import { GetPortfolio } from "../../../shared/models/GetPortfolio";
 import { GetClientInfo } from "../../../shared/models/GetClientInfo";
 
-
 export const ClientPoliciesRequest = createAction(
     "[Client Policy Request] Client Policies",
     props<{clientPolicies: GetPortfolio}>()

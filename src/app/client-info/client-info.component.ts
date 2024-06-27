@@ -51,7 +51,6 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
         filter(cred => !!cred),
         take(1),
         switchMap((cred: any) => {  
-          debugger;        
           this.myCredentials = {
             username: cred.credentials.username,
             password: cred.credentials.password,
@@ -110,7 +109,6 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
   }
 
   updatePolicies(policies: any[]) {
-    debugger;
     this.filteredPolicies = policies;
   }
 

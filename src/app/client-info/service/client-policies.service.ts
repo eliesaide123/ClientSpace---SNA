@@ -12,12 +12,11 @@ export class ClientPoliciesService {
 
     constructor(private http: HttpClient) { }
 
-    getClientPolicies(credentials: any): Observable<any> {
+    getPolicyDetails(credentials: any): Observable<any> {
         return this.http.post<any>(`${environment.BASE_URL_API}/api/Policy/get-policy-details`, credentials)
     }
 
     getPorfolio(credentials: any): Observable<any>{     
-        debugger;   
         return this.http.post<any>(`${environment.BASE_URL_API}/api/Portfolio/get-portfolio`, credentials)
     }
 

@@ -15,7 +15,6 @@ export const initialAuthState: AuthState = {
 export const authReducer = createReducer(  
   initialAuthState,
   on(AuthAction.loginSuccess, (state, action) => {
-    debugger;
     return{      
       ...state,      
       AuthResponse: action.authResponse

@@ -3,8 +3,6 @@ import { LoadClientCredentialsFromIndexedDBReducer, LoadClientCredentialsFromInd
 import { CheckRoleState, CheckRolesReducer } from "./checkRole.reducer";
 import { getClientInfoReducer, getClientInfoState } from "./get-client-info.reducer";
 
-
-
 export interface ClientInfoState{
     clientCredentials: LoadClientCredentialsFromIndexedDBState,
     checkRole: CheckRoleState,

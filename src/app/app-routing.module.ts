@@ -11,6 +11,7 @@ const routes: Routes = [
   // { path: 'register', component: RegisterComponent },
   // { path: 'client-policies', component: ClientPoliciesComponent },
    { path: 'client-policies', loadChildren: () => import('./main-client-policies/main-client-policies.module').then(m => m.MainClientPoliciesModule) },
+   { path: 'policy-details', loadChildren: () => import('./client-policies/client-policies.module').then(m => m.ClientPoliciesModule) },
 ];
 
 @NgModule({

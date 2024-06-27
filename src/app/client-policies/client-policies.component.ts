@@ -8,6 +8,8 @@ import { GetPortfolio } from '../shared/models/GetPortfolio';
 import { ClientPoliciesRequest } from './store/actions/client-policies.action';
 import { ClientPoliciesSelector } from './store/selectors/client-policies.reducer';
 import { DataSyncService } from '../shared/services/dataSync.service';
+import { GetPolicyDetails } from '../shared/models/getPolicyDetails';
+import { PolicyDetailsRequest } from './store/actions/policy-details.action';
 
 
 @Component({
@@ -21,6 +23,7 @@ export class ClientPoliciesComponent extends BaseComponent implements OnInit {
 
   myCredentials: UserCredentials;
   extendedCredentials: GetPortfolio;
+  policyDetails : GetPolicyDetails
 
   headers: string[] = ['Policy No', 'Contract Type', 'Inception', 'Expiry', 'Status', 'C/Y', 'Premium', 'Frequency'];
   data: any[] = [];
@@ -61,11 +64,11 @@ export class ClientPoliciesComponent extends BaseComponent implements OnInit {
         };
 
         this.store.dispatch(ClientPoliciesRequest({ clientPolicies: this.extendedCredentials }));
-
+debugger
         this.subscriptions.push(this.store.select(ClientPoliciesSelector).subscribe((clientPolicies) => {
+          debugger;
           if (clientPolicies) {
             this.data = clientPolicies.map((item) => {
-              debugger
               return {
                 policyNo: item.policyNo,
                 contractType: item.holderName,
@@ -90,5 +93,15 @@ export class ClientPoliciesComponent extends BaseComponent implements OnInit {
     ).subscribe((data: any) => {
       this.policies = data;
     }));
+  }
+
+  getClientPolices(policy : any){
+    this.policyDetails = {
+      credentials : this.myCredentials,
+      roleID : this.extendedCredentials.roleId,
+      polserno : policy.pol_serno
+    }
+
+    this.store.dispatch(PolicyDetailsRequest({ policyDetails : this.policyDetails}))
   }
 }

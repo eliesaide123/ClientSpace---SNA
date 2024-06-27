@@ -5,8 +5,7 @@ import { Injectable } from "@angular/core";
 import { loadClientCredentialsFromIndexedDB, loadClientCredentialsFromIndexedDBFailure, loadClientCredentialsFromIndexedDBSuccess } from "../actions/load-client-credentials-indexedDB.action";
 import { AuthenticationService } from "../../../login/service/authentication.service";
 import { AuthResponse } from "../../../shared/models/AuthResponse";
-import { checkRoles } from "../../../shared/models/checkRoles";
-debugger;
+
 @Injectable()
 export class LoadClientCredentialsFromIndexedDB {
 
@@ -16,7 +15,6 @@ export class LoadClientCredentialsFromIndexedDB {
         ofType(loadClientCredentialsFromIndexedDB),
         mergeMap(() => this.storageService.getDB<AuthResponse>("AuthResponseCredentials", "AuthCredentialsStore").pipe(
             map((authResponse: AuthResponse | null) => {  
-                debugger;              
                 if (authResponse) {                                      
                     return loadClientCredentialsFromIndexedDBSuccess({ clientCredentials: authResponse });
                 } else {
