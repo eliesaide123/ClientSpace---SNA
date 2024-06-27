@@ -5,8 +5,8 @@
 
 <app-client-info></app-client-info>
 
-<app-dropdown-client-info></app-dropdown-client-info>
+<app-dropdown-client-info (policiesFiltered)="updateFilteredPolicies($event)"></app-dropdown-client-info>
 
 <hr style="margin-top: 5px;">
 
-<app-client-policies></app-client-policies>
+<app-client-policies [policies]="filteredPolicies"></app-client-policies>

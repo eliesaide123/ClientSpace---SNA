@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './main-client-policies.component.css'
 })
 export class MainClientPoliciesComponent {
+  filteredPolicies: any[] = [];
 
+  updateFilteredPolicies(filteredPolicies: any[]) {
+    this.filteredPolicies = filteredPolicies;
+  }
 }

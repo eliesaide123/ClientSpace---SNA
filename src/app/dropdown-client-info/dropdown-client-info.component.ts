@@ -31,7 +31,7 @@ export class DropdownClientInfoComponent extends BaseComponent implements OnInit
     this.loadAllPolicies();
     const fullUrl = this.router.url;
     if (fullUrl == "/client-policies") {
-      this.title = "My Polcies"
+      this.title = "My Policies"
       this.show = false;
     } else if (fullUrl == "/GrtPolicies") {
       this.title = "Certificates"
