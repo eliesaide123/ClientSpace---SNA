@@ -3,7 +3,7 @@ import { AuthResponse } from "../../../shared/models/AuthResponse";
 import { UserCredentials } from "../../../shared/models/UserCredentials";
 
 export const login = createAction(
-    "[Login Action] Login",
+    "[Login Action] Login Request",
     props<{credentials: UserCredentials}>()        
 )
 
@@ -13,6 +13,6 @@ export const loginSuccess = createAction(
 )
 
 export const loginFailure = createAction(
-    '[Auth] Login Failure',
+    '[Login Action] Login Failure',
     props<{ error: any }>()
 );

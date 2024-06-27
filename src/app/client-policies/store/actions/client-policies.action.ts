@@ -4,7 +4,7 @@ import { GetClientInfo } from "../../../shared/models/GetClientInfo";
 
 
 export const ClientPoliciesRequest = createAction(
-    "[Client Policy Request] Client Policies",
+    "[Client Policy Request] Client Policies Request",
     props<{clientPolicies: GetPortfolio}>()
 )
 

@@ -114,8 +114,4 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
     this.filteredPolicies = policies;
   }
 
-  onLogout() {
-    this.store.dispatch(logout());
-    this.router.navigate(['/login']);
-  }
 }
