@@ -8,7 +8,7 @@ import { LoaderSpinnerModule } from './loader-spinner/loader.module';
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule

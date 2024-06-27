@@ -1,0 +1,106 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;1,600&display=swap'); */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.blue-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #49648c;
+    height: 40px;
+}
+
+.top-header {
+    display: flex;
+    align-items: center;
+    height: 10px;
+    justify-content: space-between;
+    width:100%; 
+}
+
+.icons-top-header{
+    display: flex;
+    align-items: center;
+    height:inherit;
+    width:auto;
+    gap:10px;
+}
+
+.bi {
+    color: white;
+    font-size: 1.5em;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.blue-flexboxes {
+    display: flex;
+    flex-direction: row;
+}
+
+.blue-container {
+    background-color: #cfe9ee;
+    padding: 5px 6px;
+    width: 450px;
+    font-family: "Raleway SemiBold";
+}
+
+.blue-container+span {
+    background-color: #ffffffff;
+    width: 100%;
+    padding: 5px;
+    font-family: "Raleway SemiBold";
+}
+
+.address-span {
+    width: 100%;
+    font-size: 13px;
+    font-weight: normal !important;
+}
+
+.role-section {
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    margin: 10px;    
+}
+
+.role-entry {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+}
+
+.bi-person-fill, .bi-house-door, .bi-cart3, .bi-power {
+    display: flex;
+    height: 10px;
+    align-items: center;
+    padding: 5px;
+}
+
+.user-pin-section {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between;
+    gap:20px;
+}
+
+.user-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bi-power{
+    font-size:20px;
+    background-color: red;
+    padding: 4px 5px 5px 5px;
+    border-radius: 50%;
+    height:fit-content;
+    cursor: pointer !important;
+}

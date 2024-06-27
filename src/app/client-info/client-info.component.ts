@@ -46,7 +46,8 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
       this.store.select(clientCredentialsSelector).pipe(
         filter(cred => !!cred),
         take(1),
-        switchMap((cred: any) => {          
+        switchMap((cred: any) => {  
+          debugger;        
           this.myCredentials = {
             username: cred.credentials.username,
             password: cred.credentials.password,

@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment.prod';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { BaseComponent } from '../BaseComponent';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends BaseComponent implements OnInit {
 
   showAddress: boolean = true;
   showEmail: boolean = true;
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
   CompanyYoutube: string = ""
 
   constructor(private router: Router) {
+    super()
     this.CompanyName = environment.CompanyName;
     this.CompanyNameAndAddress = environment.CompanyNameAndAddress;
     this.CompanyNameAndAddress2 = environment.CompanyNameAndAddress2;
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit {
     this.CompanyInstragram = environment.CompanyInstragram;
     this.CompanyYoutube = environment.CompanyYoutube;
 
-    this.router.events.pipe(
+    this.subscriptions.push(this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       const url = event.urlAfterRedirects;
@@ -46,7 +48,7 @@ export class HeaderComponent implements OnInit {
       this.showEmail = url == '/profile' ;
       this.showEmail = url == '/client-policies' ;
       this.showWorkingHours = url !== '/register' && url !== '/profile' && url !== '/client-policies';
-    });
+    }));
   }
 
   ngOnInit() {
