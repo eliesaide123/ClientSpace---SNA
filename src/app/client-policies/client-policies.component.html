@@ -12,13 +12,13 @@
   </thead>
   <tbody>
     <!-- Data Rows -->
-  <tr *ngFor="let policy of data" class="grid-row">
+  <tr *ngFor="let policy of policies" class="grid-row">
     <td class="grid-item"></td>
     <td class="grid-item"></td>
     <td class="grid-item">{{ policy.policyNo }}</td>
-    <td class="grid-item">{{ policy.contactType }}</td>
-    <td class="grid-item">{{ policy.inception }}</td>
-    <td class="grid-item">{{ policy.expiry }}</td>
+    <td class="grid-item">{{ policy.holderName }}</td>
+    <td class="grid-item">{{ policy.inception | date:'dd/MM/yyyy'}}</td>
+    <td class="grid-item">{{ policy.expiry | date:'dd/MM/yyyy'}}</td>
     <td class="grid-item">{{ policy.status }}</td>
     <td class="grid-item">{{ policy.cY }}</td>
     <td class="grid-item">{{ policy.premium }}</td>
@@ -27,3 +27,7 @@
   </tbody>
 </table>
 </div>
+
+
+
+

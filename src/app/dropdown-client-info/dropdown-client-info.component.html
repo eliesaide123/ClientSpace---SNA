@@ -47,9 +47,9 @@
         <div>
             <span>Policy No <span>(ABC/123)</span></span> &nbsp;
 
-            <input type="text"> &nbsp;
-            <i class="bi bi-search"></i> &nbsp;
-        </div>   
+            <input type="text" [(ngModel)]="searchText"> &nbsp;
+            <i class="bi bi-search" (click)="filterPolicies()"></i> &nbsp;
+        </div>
         <div class=""></div>     
         <div class=""></div>     
     }

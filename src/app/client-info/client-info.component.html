@@ -13,7 +13,7 @@
             <div class="user-section" style="color: white">User: <span>{{username}}</span></div>
             <div style="color: white">Pin: <span>{{pin}}</span></div>
         </div>
-        <div><i class="bi bi-power"></i></div>
+        <div><i class="bi bi-power" (click)="onLogout()"></i></div>
     </div>
 </div>
 
@@ -53,8 +53,8 @@
     </div>
 </div>
 <br>
-<app-dropdown-client-info></app-dropdown-client-info>
+<app-dropdown-client-info (policiesFiltered)="updatePolicies($event)"></app-dropdown-client-info>
 
 <hr style="margin-top: 5px;">
 
-<app-client-policies></app-client-policies>
+<app-client-policies [policies]="filteredPolicies"></app-client-policies>

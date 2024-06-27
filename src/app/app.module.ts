@@ -12,6 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './login/auth.module';
 import { ClientInfoModule } from './client-info/client-info.module';
 import { ClientPoliciesModule } from './client-policies/client-policies.module';
+import { DatePipe } from '@angular/common';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { ClientPoliciesModule } from './client-policies/client-policies.module';
     SharedModule,  
     AuthModule,
     ClientInfoModule,
-    ClientPoliciesModule, 
+    ClientPoliciesModule,
+    DatePipe,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([])

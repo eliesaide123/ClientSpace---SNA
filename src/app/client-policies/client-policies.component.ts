@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserCredentials } from '../shared/models/UserCredentials';
 import { checkRoleSelector, clientCredentialsSelector } from '../client-info/store/selectors';
@@ -9,25 +9,28 @@ import { ClientPoliciesRequest } from './store/actions/client-policies.action';
 import { ClientPoliciesSelector } from './store/selectors/client-policies.reducer';
 import { DataSyncService } from '../shared/services/dataSync.service';
 
+
 @Component({
   selector: 'app-client-policies',
   templateUrl: './client-policies.component.html',
-  styleUrl: './client-policies.component.css'
+  styleUrl: './client-policies.component.css',
 })
 export class ClientPoliciesComponent extends BaseComponent implements OnInit {
   
+  @Input() policies: any[] = []
+
   myCredentials: UserCredentials;
   extendedCredentials: GetPortfolio;
 
-  headers: string[] = ['Policy No', 'Contact Type', 'Inception', 'Expiry', 'Status', 'C/Y', 'Premium', 'Frequency'];
+  headers: string[] = ['Policy No', 'Contract Type', 'Inception', 'Expiry', 'Status', 'C/Y', 'Premium', 'Frequency'];
   data: any[] = [];
-  policyNo: string;
-
+  
   constructor(private store: Store, private dataSyncService: DataSyncService) {
     super()
   }
-
+  
   ngOnInit() {
+    this.loadAllPolicies();
     // Wait until client info is loaded
     this.subscriptions.push(
       this.dataSyncService.clientInfoLoaded$.pipe(
@@ -59,12 +62,13 @@ export class ClientPoliciesComponent extends BaseComponent implements OnInit {
 
         this.store.dispatch(ClientPoliciesRequest({ clientPolicies: this.extendedCredentials }));
 
-        this.store.select(ClientPoliciesSelector).subscribe((clientPolicies) => {
+        this.subscriptions.push(this.store.select(ClientPoliciesSelector).subscribe((clientPolicies) => {
           if (clientPolicies) {
             this.data = clientPolicies.map((item) => {
+              debugger
               return {
                 policyNo: item.policyNo,
-                contactType: item.holderName,
+                contractType: item.holderName,
                 inception: item.inception,
                 expiry: item.expiry,
                 status: item.status_Code,
@@ -74,8 +78,17 @@ export class ClientPoliciesComponent extends BaseComponent implements OnInit {
               };
             });
           }
-        });
+        }));
+        
       })
     );
+  }
+
+  loadAllPolicies(): void {
+    this.subscriptions.push(this.store.select(ClientPoliciesSelector).pipe(
+      filter(policies => !!policies)
+    ).subscribe((data: any) => {
+      this.policies = data;
+    }));
   }
 }

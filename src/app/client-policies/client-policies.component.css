@@ -7,6 +7,19 @@ table{
   width:100%;
 }
 
+tr:nth-child(odd){
+  background:#e2e2e2;
+}
+
+tr:nth-child(even){
+  background:#f7f7f7;
+}
+
+tr:hover{
+  background:#7e8ea7;
+  color: #ffffffff;
+}
+
 .grid-item {
   border: 1px solid #ccc;
   padding: 5px;
@@ -22,9 +35,4 @@ table{
   background-color: #49648c;
   color:#ffffffff;
   font-weight: bold;
-}
-
-tr:hover{
-  background:#7e8ea7;
-  color: #ffffffff;
 }
