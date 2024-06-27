@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: 'register', component: RegisterComponent },
   // { path: 'client-policies', component: ClientPoliciesComponent },
-   { path: 'client-policies', loadChildren: () => import('./client-info/client-info.module').then(m => m.ClientInfoModule) }
+   { path: 'client-policies', loadChildren: () => import('./client-info/client-info.module').then(m => m.ClientInfoModule) },
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { LoadClientCredentialsIndexedDBActions } from '../actions';
 import { AuthResponse } from '../../../shared/models/AuthResponse';
+import {logout} from '../actions/logout.action'
 export const reducerFeatureKey = 'clientCredentials';
 
 export interface LoadClientCredentialsFromIndexedDBState {
@@ -18,6 +19,6 @@ export const LoadClientCredentialsFromIndexedDBReducer = createReducer(
       ...state,
       clientCredentials: action.clientCredentials
     }
-  })
+  }),
 );
 

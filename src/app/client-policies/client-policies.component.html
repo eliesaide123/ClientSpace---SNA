@@ -12,18 +12,22 @@
   </thead>
   <tbody>
     <!-- Data Rows -->
-  <tr *ngFor="let policy of data" class="grid-row">
+  <tr *ngFor="let policy of policies" class="grid-row">
     <td class="grid-item"></td>
     <td class="grid-item"></td>
     <td class="grid-item">{{ policy.policyNo }}</td>
-    <td class="grid-item">{{ policy.contactType }}</td>
-    <td class="grid-item">{{ policy.inception }}</td>
-    <td class="grid-item">{{ policy.expiry }}</td>
-    <td class="grid-item">{{ policy.status }}</td>
-    <td class="grid-item">{{ policy.cY }}</td>
-    <td class="grid-item">{{ policy.premium }}</td>
-    <td class="grid-item">{{ policy.frequency }}</td>
+    <td class="grid-item">{{ policy.holderName }}</td>
+    <td class="grid-item">{{ policy.inception | date:'dd/MM/yyyy'}}</td>
+    <td class="grid-item">{{ policy.expiry | date:'dd/MM/yyyy'}}</td>
+    <td class="grid-item">{{ policy.status_Code }}</td>
+    <td class="grid-item">{{ policy.cur_Code }}</td>
+    <td class="grid-item">{{ policy.total_Premium }}</td>
+    <td class="grid-item">{{ policy.pay_Frq }}</td>
   </tr>
   </tbody>
 </table>
 </div>
+
+
+
+

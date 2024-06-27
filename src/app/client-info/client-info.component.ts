@@ -14,6 +14,9 @@ import { clientInfoSelector } from './store/selectors/get-client-info.selector';
 import { DataSyncService } from '../shared/services/dataSync.service';
 import { StorageService } from '../IndexedDB/storage.service';
 import { LoaderService } from '../shared/loader-spinner/service/loader.service';
+import {logout} from './store/actions/logout.action';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-client-info',
@@ -32,8 +35,9 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
   dateOfBirth: string;
   maritalStatus: string;
   address: string;
+  filteredPolicies: any[] = [];
 
-  constructor(private store: Store, private dataSyncService: DataSyncService, private loaderService: LoaderService) {
+  constructor(private store: Store, private dataSyncService: DataSyncService, private loaderService: LoaderService,private router: Router) {
     super();
   }
 
@@ -103,5 +107,15 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
 
   formatAddress(address: string): string {
     return `<i>${address.replace(/rn/g, '<br>')}</i>`;
+  }
+
+  updatePolicies(policies: any[]) {
+    debugger;
+    this.filteredPolicies = policies;
+  }
+
+  onLogout() {
+    this.store.dispatch(logout());
+    this.router.navigate(['/login']);
   }
 }
