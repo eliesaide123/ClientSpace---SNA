@@ -31,8 +31,7 @@ export class HeaderBlueLineComponent implements OnInit {
 
   onLogout() {
     debugger;
-    this.store.dispatch(logoutActionRequest());
-    //this.router.navigate(['/login']);
+    this.store.dispatch(logoutActionRequest());    
   }
 
 }
