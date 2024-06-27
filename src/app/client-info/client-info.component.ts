@@ -35,6 +35,7 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
   dateOfBirth: string;
   maritalStatus: string;
   address: string;
+  filteredPolicies: any[] = [];
 
   constructor(private store: Store, private dataSyncService: DataSyncService, private loaderService: LoaderService,private router: Router) {
     super();
@@ -106,8 +107,6 @@ export class ClientInfoComponent extends BaseComponent implements OnInit {
   formatAddress(address: string): string {
     return `<i>${address.replace(/rn/g, '<br>')}</i>`;
   }
-
-  filteredPolicies: any[] = [];
 
   updatePolicies(policies: any[]) {
     debugger;
