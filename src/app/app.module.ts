@@ -14,6 +14,7 @@ import { ClientInfoModule } from './client-info/client-info.module';
 import { ClientPoliciesModule } from './client-policies/client-policies.module';
 import { DatePipe } from '@angular/common';
 import { MainClientPoliciesModule } from './main-client-policies/main-client-policies.module';
+import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module';
 
 
 
@@ -32,6 +33,7 @@ import { MainClientPoliciesModule } from './main-client-policies/main-client-pol
     ClientInfoModule,
     MainClientPoliciesModule,
     ClientPoliciesModule,
+    HeaderBlueLineModule,
     DatePipe,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
