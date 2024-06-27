@@ -11,6 +11,7 @@ import { ClientPoliciesEffects } from './store/effects';
 import { DropdownClientInfoComponent } from '../dropdown-client-info/dropdown-client-info.component';
 import { ClientPoliciesComponent } from '../client-policies/client-policies.component';
 import { HeaderBlueLineComponent } from '../header-blue-line/header-blue-line.component';
+import { MainClientPoliciesComponent } from '../main-client-policies/main-client-policies.component';
 
 
 
@@ -29,7 +30,7 @@ import { HeaderBlueLineComponent } from '../header-blue-line/header-blue-line.co
     StoreModule.forFeature("clientCredentials", PolciesManagementReducers),
     EffectsModule.forFeature(ClientPoliciesEffects)
   ],
-  declarations: [ClientInfoComponent, DropdownClientInfoComponent, ClientPoliciesComponent, HeaderBlueLineComponent]
+  declarations: []
   
   
 })

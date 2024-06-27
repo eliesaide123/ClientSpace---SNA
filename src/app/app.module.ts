@@ -13,6 +13,7 @@ import { AuthModule } from './login/auth.module';
 import { ClientInfoModule } from './client-info/client-info.module';
 import { ClientPoliciesModule } from './client-policies/client-policies.module';
 import { DatePipe } from '@angular/common';
+import { MainClientPoliciesModule } from './main-client-policies/main-client-policies.module';
 
 
 
@@ -29,6 +30,7 @@ import { DatePipe } from '@angular/common';
     SharedModule,  
     AuthModule,
     ClientInfoModule,
+    MainClientPoliciesModule,
     ClientPoliciesModule,
     DatePipe,
     StoreModule.forRoot({}, {}),
