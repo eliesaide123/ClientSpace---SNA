@@ -15,7 +15,7 @@ import { ClientPoliciesModule } from './client-policies/client-policies.module';
 import { DatePipe } from '@angular/common';
 import { MainClientPoliciesModule } from './main-client-policies/main-client-policies.module';
 import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module';
-
+import { metaReducers } from './header-blue-line/store/reducers/clear-state.reducer';
 
 
 @NgModule({
@@ -35,7 +35,7 @@ import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module
     ClientPoliciesModule,
     HeaderBlueLineModule,
     DatePipe,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([])
   ],
