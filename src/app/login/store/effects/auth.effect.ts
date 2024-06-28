@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { login, loginFailure, loginSuccess } from "../actions/auth.actions";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
-import { StorageService } from "../../../IndexedDB/storage.service";
+import { StorageService } from "../../../shared/services/storage.service";
 import { AuthenticationService } from "../../service/authentication.service";
 import { of } from "rxjs";
 import { Route, Router } from "@angular/router";

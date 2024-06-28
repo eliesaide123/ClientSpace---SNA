@@ -2,36 +2,50 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { checkRoleSelector } from '../client-info/store/selectors';
 import { filter, take } from 'rxjs';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { logoutActionRequest } from './store/actions/logout.actions';
+import { BaseComponent } from '../shared/BaseComponent';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header-blue-line',
   templateUrl: './header-blue-line.component.html',
   styleUrl: './header-blue-line.component.css'
 })
-export class HeaderBlueLineComponent implements OnInit {
-  
-  role: string = ""
-  username : string = ""
-  pin : string = ""
+export class HeaderBlueLineComponent extends BaseComponent implements OnInit {
 
-  constructor(private store : Store,private router: Router) {}
+  role: string = ""
+  username: string = ""
+  pin: string = ""
+  showArrow: boolean = false
+
+  constructor(private store: Store, private router: Router, private location: Location) {
+    super()
+    this.subscriptions.push(this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      const url = event.urlAfterRedirects;
+      this.showArrow = url !== '/client-policies';
+    }));
+  }
 
   ngOnInit() {
-      this.store.select(checkRoleSelector).pipe(
-        filter(item => !!item),
-        take(1)
-      ).subscribe((item: any) => {
-        this.role = item.success.role;
-        this.username = item.success.userName;
-        this.pin = item.success.pin
-      });
+    this.store.select(checkRoleSelector).pipe(
+      filter(item => !!item),
+      take(1)
+    ).subscribe((item: any) => {
+      this.role = item.success.role;
+      this.username = item.success.userName;
+      this.pin = item.success.pin
+    });
   }
 
   onLogout() {
     debugger;
-    this.store.dispatch(logoutActionRequest());    
+    this.store.dispatch(logoutActionRequest());
   }
 
+  historyMinus1(){
+    this.location.back();
+  }
 }

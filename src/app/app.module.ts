@@ -12,9 +12,10 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './login/auth.module';
 import { ClientInfoModule } from './client-info/client-info.module';
 import { ClientPoliciesModule } from './client-policies/client-policies.module';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { MainClientPoliciesModule } from './main-client-policies/main-client-policies.module';
 import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module';
+import { PolicyDetailsModule } from './policy-details/policy-details.module';
 
 
 
@@ -32,9 +33,10 @@ import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module
     AuthModule,
     ClientInfoModule,
     MainClientPoliciesModule,
-    ClientPoliciesModule,
-    HeaderBlueLineModule,
+    ClientPoliciesModule,       
+    PolicyDetailsModule,
     DatePipe,
+    DecimalPipe,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([])

@@ -4,7 +4,7 @@ import { catchError, exhaustMap, map, of, switchMap, tap } from "rxjs";
 import { Injectable } from "@angular/core";
 import { checkRoleFailure, checkRoleRequest, checkRoleSuccess } from "../actions/check-roles.action";
 import { AuthenticationService } from "../../../login/service/authentication.service";
-import { StorageService } from "../../../IndexedDB/storage.service";
+import { StorageService } from "../../../shared/services/storage.service";
 
 @Injectable()
 export class CheckRoles{

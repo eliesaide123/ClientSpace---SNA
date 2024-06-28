@@ -8,12 +8,14 @@ import { ClientPoliciesComponent } from "../client-policies/client-policies.comp
 import { HeaderBlueLineComponent } from "../header-blue-line/header-blue-line.component";
 import { MainClientPoliciesComponent } from "./main-client-policies.component";
 import { FormsModule } from "@angular/forms";
+import { HeaderBlueLineModule } from "../header-blue-line/header-blue-line.module";
 
 @NgModule({
     imports: [
       CommonModule,
       SharedModule,    
       FormsModule,
+      HeaderBlueLineModule,
       RouterModule.forChild([
         {
           path: '',
@@ -21,7 +23,7 @@ import { FormsModule } from "@angular/forms";
         },
       ]),      
     ],
-    declarations: [MainClientPoliciesComponent, ClientInfoComponent, DropdownClientInfoComponent, ClientPoliciesComponent, HeaderBlueLineComponent]
+    declarations: [MainClientPoliciesComponent, ClientInfoComponent, DropdownClientInfoComponent, ClientPoliciesComponent]
     
     
   })

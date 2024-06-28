@@ -6,7 +6,7 @@ import { PolciesDetailsManagementReducers } from "./store/reducers";
 
 @NgModule({
     imports: [        
-      StoreModule.forFeature("Client-Policies" ,PolciesDetailsManagementReducers),
+      StoreModule.forFeature("Client-Policies", PolciesDetailsManagementReducers),
       EffectsModule.forFeature(PolicyDetailsEffects)
     ],
     

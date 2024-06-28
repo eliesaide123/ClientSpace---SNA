@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment.prod';
 import { take, switchMap, filter } from 'rxjs/operators';
 import { clientInfoSelector } from './store/selectors/get-client-info.selector';
 import { DataSyncService } from '../shared/services/dataSync.service';
-import { StorageService } from '../IndexedDB/storage.service';
+import { StorageService } from '../shared/services/storage.service';
 import { LoaderService } from '../shared/loader-spinner/service/loader.service';
 import {logout} from './store/actions/logout.action';
 import { Router } from '@angular/router';

@@ -7,7 +7,7 @@ import { login } from './store/actions/auth.actions';
 import { Store } from '@ngrx/store';
 import { UserCredentials } from '../shared/models/UserCredentials';
 import { BaseComponent } from '../shared/BaseComponent';
-import { StorageService } from '../IndexedDB/storage.service';
+import { StorageService } from '../shared/services/storage.service';
 
 @Component({
   selector: 'app-login',

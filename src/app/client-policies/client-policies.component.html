@@ -21,7 +21,7 @@
     <td class="grid-item">{{ policy.expiry | date:'dd/MM/yyyy'}}</td>
     <td class="grid-item">{{ policy.status_Code }}</td>
     <td class="grid-item">{{ policy.cur_Code }}</td>
-    <td class="grid-item">{{ policy.total_Premium }}</td>
+    <td class="grid-item">{{ policy.total_Premium | number: '0.2' }}</td>
     <td class="grid-item">{{ policy.pay_Frq }}</td>
   </tr>
   </tbody>

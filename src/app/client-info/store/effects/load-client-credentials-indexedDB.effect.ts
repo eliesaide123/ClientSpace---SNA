@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { StorageService } from "../../../IndexedDB/storage.service";
+import { StorageService } from "../../../shared/services/storage.service";
 import { catchError, from, map, mergeMap, of, switchMap, tap } from "rxjs";
 import { Injectable } from "@angular/core";
 import { loadClientCredentialsFromIndexedDB, loadClientCredentialsFromIndexedDBFailure, loadClientCredentialsFromIndexedDBSuccess } from "../actions/load-client-credentials-indexedDB.action";
