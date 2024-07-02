@@ -1,18 +1,19 @@
 import { NgModule } from "@angular/core";
-import { StoreModule } from "@ngrx/store";
-import { LogoutReducer, reducerKey } from "./store/reducers/logout.reducer";
 import { EffectsModule } from "@ngrx/effects";
-import { LogoutEffects } from "./store/effects/logout.effects";
 import { HeaderBlueLineComponent } from "./header-blue-line.component";
+import { CheckRoleEffect } from "./store/effects/getRole.effect";
+import { StoreModule } from "@ngrx/store";
+import { PolciesManagementReducers } from "../client-info/store/reducers";
+//import { checkRoleReducer } from "./store/reducers/getRole.reducer";
 
 @NgModule({
-imports: [
-    StoreModule.forFeature(reducerKey, LogoutReducer),
-    EffectsModule.forFeature([LogoutEffects])
-],
-declarations: [HeaderBlueLineComponent],
-exports : [HeaderBlueLineComponent],
-providers: []
+    imports: [
+        StoreModule.forFeature("clientCredentials", PolciesManagementReducers),
+        EffectsModule.forFeature([CheckRoleEffect])
+    ],
+    declarations: [HeaderBlueLineComponent],
+    exports: [HeaderBlueLineComponent],
+    providers: []
 })
 
-export class HeaderBlueLineModule{}
+export class HeaderBlueLineModule { }

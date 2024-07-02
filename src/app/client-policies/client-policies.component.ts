@@ -10,6 +10,7 @@ import { ClientPoliciesSelector } from './store/selectors/client-policies.reduce
 import { DataSyncService } from '../shared/services/dataSync.service';
 import { GetPolicyDetails } from '../shared/models/getPolicyDetails';
 import { PolicyDetailsRequest } from './store/actions/policy-details.action';
+import { StorageService } from '../shared/services/storage.service';
 
 
 @Component({
@@ -28,11 +29,12 @@ export class ClientPoliciesComponent extends BaseComponent implements OnInit {
   headers: string[] = ['Policy No', 'Contract Type', 'Inception', 'Expiry', 'Status', 'C/Y', 'Premium', 'Frequency'];
   data: any[] = [];
   
-  constructor(private store: Store, private dataSyncService: DataSyncService) {
+  constructor(private store: Store, private dataSyncService: DataSyncService, private storageService: StorageService) {
     super()
   }
   
   ngOnInit() {
+    //this.storageService.deleteDB('CheckRoleDB')
     this.loadAllPolicies();
     // Wait until client info is loaded
     this.subscriptions.push(

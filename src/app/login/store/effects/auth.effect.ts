@@ -28,7 +28,6 @@ export class AuthEffect {
     { dispatch: false }
   );
 
-
   loginUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(login),

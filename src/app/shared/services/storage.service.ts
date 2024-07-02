@@ -6,59 +6,61 @@ import { Observable, from } from 'rxjs';
 })
 export class StorageService {
 
-  constructor() {}
+  constructor() { }
 
-  addDB(item: any, dbName: string, storeName: string): Promise<void> {    
+  addDB(item: any, dbName: string, storeName: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      const request = window.indexedDB.open(dbName);
-
-      request.onerror = (event: Event) => {
-        console.error("IndexedDB error:", event);
-        reject(event);
-      };
-
-      request.onsuccess = (event: Event) => {
-        const db = (event.target as any).result;
-        const transaction = db.transaction([storeName], "readwrite");
-        const objectStore = transaction.objectStore(storeName);
-
-        const addRequest = objectStore.add(item);
-        
-        addRequest.onsuccess = () => {
-          console.log("Item added to IndexedDB successfully.");
-          resolve();
+        const request = indexedDB.open(dbName, 1); // Specify a version number
+ 
+        request.onerror = (event: Event) => {
+            console.error("IndexedDB error:", event);
+            reject(event);
         };
-        
-        addRequest.onerror = (event: Event) => {
-          const error = (event.target as IDBOpenDBRequest).error;
-          console.error("Error adding item to IndexedDB:", error);
-          reject(error);
+ 
+        request.onsuccess = (event: Event) => {
+            const db = (event.target as any).result;
+            const transaction = db.transaction([storeName], 'readwrite');
+            const objectStore = transaction.objectStore(storeName);
+ 
+            const addRequest = objectStore.add(item);
+ 
+            addRequest.onsuccess = () => {
+                console.log("Item added to IndexedDB successfully.");
+                resolve();
+            };
+ 
+            addRequest.onerror = (event: Event) => {
+                const error = (event.target as IDBRequest).error;
+                console.error("Error adding item to IndexedDB:", error);
+                reject(error);
+            };
         };
-      };
-
-      request.onupgradeneeded = (event: Event) => {
-        const db = (event.target as any).result;
-        db.createObjectStore(storeName, { autoIncrement: true });
-      };
+ 
+        request.onupgradeneeded = (event: IDBVersionChangeEvent) => {
+            const db = (event.target as any).result;
+            if (!db.objectStoreNames.contains(storeName)) {
+                db.createObjectStore(storeName, { autoIncrement: true });
+            }
+        };
     });
-  }
+}
 
   getDB<T>(dbName: string, storeName: string): Observable<T | null> {
     return new Observable<T | null>((observer) => {
-      const request = window.indexedDB.open(dbName);  
+      const request = window.indexedDB.open(dbName);
       request.onerror = (event: Event) => {
         console.error("IndexedDB error:", event);
         observer.error(event);
       };
-  
+
       request.onsuccess = (event: Event) => {
         const db = (event.target as any).result;
-        const transaction = db.transaction([storeName], "readonly");
+        const transaction = db.transaction([storeName]);
         const objectStore = transaction.objectStore(storeName);
-  
+
         const getRequest = objectStore.getAll(); // Retrieve all data from the object store
-  
-        getRequest.onsuccess = (event: Event) => {          
+
+        getRequest.onsuccess = (event: Event) => {
           const data = (event.target as IDBRequest).result;
           if (data && data.length > 0) {
             observer.next(data[0]); // Emit the first item in the store
@@ -67,14 +69,14 @@ export class StorageService {
           }
           observer.complete(); // Complete the observable
         };
-  
+
         getRequest.onerror = (event: Event) => {
           console.error("Error getting data from IndexedDB:", event);
           observer.error(event);
         };
       };
     });
-  } 
+  }
 
   deleteDB(dbName: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {

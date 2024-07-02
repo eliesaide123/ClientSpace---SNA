@@ -1,10 +1,7 @@
-// import { HeaderBlueLineEffectAdd } from "./addDB-toIndexedDB.effect";
-// import { HeaderBlueLineEffectGet } from "./getDB-FromIndexedDB.effect";
+import { HeaderBlueLineEffectGet } from "./getDB-FromIndexedDB.effect";
 
-// export const PolicyDetailsEffects =[
-//     HeaderBlueLineEffectAdd,
-//     HeaderBlueLineEffectGet
-// ];
+export const PolicyDetailsEffects =[
+    HeaderBlueLineEffectGet
+];
 
-// export * from './addDB-toIndexedDB.effect'
-// export * from './getDB-FromIndexedDB.effect'
+export * from './getDB-FromIndexedDB.effect'

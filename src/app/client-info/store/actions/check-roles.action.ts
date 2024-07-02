@@ -12,7 +12,6 @@ export const checkRoleSuccess = createAction(
     props<{ checkRoles: checkRolesResponse | null }>()
 );
 
-
 export const checkRoleFailure = createAction(
     '[Check Role Failure] Check Role Failure',
     props<{ error: any }>()

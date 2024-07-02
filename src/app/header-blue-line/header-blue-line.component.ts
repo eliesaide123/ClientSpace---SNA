@@ -3,9 +3,10 @@ import { Store } from '@ngrx/store';
 import { checkRoleSelector } from '../client-info/store/selectors';
 import { filter, take } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
-import { logoutActionRequest } from './store/actions/logout.actions';
 import { BaseComponent } from '../shared/BaseComponent';
 import { Location } from '@angular/common';
+import { CheckRoleRequest } from './store/actions/getRole.action';
+// import { getCheckRoleSelector } from './store/selectors/getRole.selector';
 
 @Component({
   selector: 'app-header-blue-line',
@@ -38,11 +39,20 @@ export class HeaderBlueLineComponent extends BaseComponent implements OnInit {
       this.username = item.success.userName;
       this.pin = item.success.pin
     });
+
+    this.store.dispatch(CheckRoleRequest())
+
+    // this.store.select(getCheckRoleSelector).pipe(
+    //   filter(item => !!item),
+    //   take(1)
+    // ).subscribe((item: any) => {
+    //   debugger;
+    // })
   }
 
   onLogout() {
     debugger;
-    this.store.dispatch(logoutActionRequest());
+    // this.store.dispatch(logoutActionRequest());
   }
 
   historyMinus1(){

@@ -7,9 +7,8 @@ import { FormsModule } from "@angular/forms";
 import { HeaderBlueLineModule } from "../header-blue-line/header-blue-line.module";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-//import { reducerFeatureKey } from "./store/reducers/addDB-toIndexedDB.reducer.reducer";
-// import { AddCheckRoleManagementReducer } from "./store/reducers";
-// import { PolicyDetailsEffects } from "./store/effects";
+import { PolicyDetailsEffects } from "./store/effects";
+import { addCheckRoleFromIndexedDBReducer } from "./store/reducers/getDB-FromIndexedDB.reducer";
 
 @NgModule({
   imports: [
@@ -23,8 +22,8 @@ import { EffectsModule } from "@ngrx/effects";
         component: PolicyDetailsComponent
       },
     ]),
-    //StoreModule.forFeature(reducerFeatureKey, AddCheckRoleManagementReducer),
-    //EffectsModule.forFeature(PolicyDetailsEffects)
+    StoreModule.forFeature("PolicyDetails", addCheckRoleFromIndexedDBReducer),
+    EffectsModule.forFeature(PolicyDetailsEffects)
   ],
   declarations: [PolicyDetailsComponent]
 })

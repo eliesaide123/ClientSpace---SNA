@@ -13,7 +13,7 @@ export class PolicyDetailsComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-      //this.store.dispatch(addClientRoleToIndexedDB())
+      // this.store.select(addClientRoleToIndexedDB())
   }
 
 }
