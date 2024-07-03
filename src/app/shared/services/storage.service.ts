@@ -10,32 +10,42 @@ export class StorageService {
 
   addDB(item: any, dbName: string, storeName: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-        const request = indexedDB.open(dbName, 1); // Specify a version number
- 
+        const request = indexedDB.open(dbName, 1);
+
         request.onerror = (event: Event) => {
             console.error("IndexedDB error:", event);
             reject(event);
         };
- 
+
         request.onsuccess = (event: Event) => {
             const db = (event.target as any).result;
             const transaction = db.transaction([storeName], 'readwrite');
             const objectStore = transaction.objectStore(storeName);
- 
-            const addRequest = objectStore.add(item);
- 
-            addRequest.onsuccess = () => {
-                console.log("Item added to IndexedDB successfully.");
+
+            const putRequest = objectStore.put(item, 1);
+
+            putRequest.onsuccess = () => {
+                console.log("Item updated in IndexedDB successfully.");
                 resolve();
             };
- 
-            addRequest.onerror = (event: Event) => {
+
+            putRequest.onerror = (event: Event) => {
                 const error = (event.target as IDBRequest).error;
-                console.error("Error adding item to IndexedDB:", error);
+                console.error("Error updating item in IndexedDB:", error);
                 reject(error);
             };
+
+            // Optionally, commit the transaction after successful put
+            transaction.oncomplete = () => {
+                console.log("Transaction completed.");
+            };
+
+            transaction.onerror = (event: Event) => {
+                console.error("Transaction error:", event);
+                reject(event);
+            };
         };
- 
+
         request.onupgradeneeded = (event: IDBVersionChangeEvent) => {
             const db = (event.target as any).result;
             if (!db.objectStoreNames.contains(storeName)) {

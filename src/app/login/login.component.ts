@@ -31,9 +31,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.showIcons = true;
-
     this.storageService.deleteAllDatabases();
-
     this.subscriptions.push(this.authService.getSessionId()
       .pipe(
         tap(sessionIdResponse => {
@@ -46,8 +44,10 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe(
-        () => alert("Session ID: " + this.sessionId)
-      ))      
+        () => {alert("Session ID: " + this.sessionId)
+        this.storageService.addDB(null, "AuthResponseCredentials", "AuthCredentialsStore");
+        this.storageService.addDB(null, "CheckRoleDB", "CheckRoleStore");
+  }))      
   }
 
   togglePasswordVisibility() {
