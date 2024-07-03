@@ -9,7 +9,7 @@ export const checkRoleRequest = createAction(
 
 export const checkRoleSuccess = createAction(
     '[Check Role Success] Check Role Success',
-    props<{ checkRoles: checkRolesResponse | null }>()
+    props<{ checkRole: checkRolesResponse | null }>()
 );
 
 export const checkRoleFailure = createAction(

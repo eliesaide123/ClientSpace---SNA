@@ -15,7 +15,7 @@ export class CheckRoles {
         ofType(checkRoleRequest),
         exhaustMap(action => this.authService.checkRoles(action.myCredentials).pipe(
             map((checkRoles: checkRolesResponse | null) => {
-                return checkRoleSuccess({ checkRoles: checkRoles })
+                return checkRoleSuccess({ checkRole: checkRoles })
             })
         )),
         catchError(error => {
@@ -28,7 +28,7 @@ export class CheckRoles {
         ofType(checkRoleSuccess),        
         tap(action => {
             debugger;
-            this.storageService.addDB(action.checkRoles, "CheckRoleDB", "CheckRoleStore")
+            this.storageService.addDB(action.checkRole, "CheckRoleDB", "CheckRoleStore")
                 .then(() => {
                     console.log('CheckRole saved to IndexedDB successfully');
                 })

@@ -12,6 +12,17 @@ export class AuthEffect {
   
   constructor(private actions$: Actions, private storageService: StorageService, private authService: AuthenticationService, private router : Router) {}
   
+  addingDBToIndexedDBasNULL$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loginSuccess),
+      tap(() => {        
+        this.storageService.addDB(null, "AuthResponseCredentials", "AuthCredentialsStore");
+        this.storageService.addDB(null, "CheckRoleDB", "CheckRoleStore");
+      })
+    ),
+    { dispatch: false }
+  );
+
   saveAuthResponseToIndexedDB$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginSuccess),

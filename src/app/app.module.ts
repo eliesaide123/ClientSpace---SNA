@@ -16,6 +16,8 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import { MainClientPoliciesModule } from './main-client-policies/main-client-policies.module';
 import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module';
 import { PolicyDetailsModule } from './policy-details/policy-details.module';
+import { PolicyInfoComponent } from './policy-info/policy-info.component';
+import { PolicyInfoModule } from './policy-info/policy-info.module';
 
 
 
@@ -35,6 +37,7 @@ import { PolicyDetailsModule } from './policy-details/policy-details.module';
     MainClientPoliciesModule,
     ClientPoliciesModule,       
     PolicyDetailsModule,
+    PolicyInfoModule,
     DatePipe,
     DecimalPipe,
     StoreModule.forRoot({}, {}),

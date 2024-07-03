@@ -9,6 +9,7 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { PolicyDetailsEffects } from "./store/effects";
 import { addCheckRoleFromIndexedDBReducer } from "./store/reducers/getDB-FromIndexedDB.reducer";
+import { PolicyInfoModule } from "../policy-info/policy-info.module";
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { addCheckRoleFromIndexedDBReducer } from "./store/reducers/getDB-FromInd
     SharedModule,
     FormsModule,
     HeaderBlueLineModule,
+    PolicyInfoModule,
     RouterModule.forChild([
       {
         path: '',

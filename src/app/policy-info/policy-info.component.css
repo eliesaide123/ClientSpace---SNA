@@ -1,0 +1,62 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;1,600&display=swap'); */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+}
+
+.main-policy-info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 200px;
+    background-color: #f2f2f2;
+    padding: 3px 0;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 50%;
+}
+
+.policy-info {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.policy-info2 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 50%;
+}
+
+.blue-flexboxes {
+    display: flex;
+    flex-direction: row;
+}
+
+.blue-container {
+    background-color: #cfe9ee;
+    padding: 5px 6px;
+    width: 450px;
+    font-family: "Raleway SemiBold";
+}
+
+.blue-container+span {
+    background-color: #ffffffff;
+    width: 100%;
+    padding: 5px;
+    font-family: "Raleway SemiBold";
+}

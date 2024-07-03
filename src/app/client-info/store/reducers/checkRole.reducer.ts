@@ -16,7 +16,7 @@ export const CheckRolesReducer = createReducer(
   on(CheckRolesActions.checkRoleSuccess, (state, action) => {
     return {
       ...state,
-      checkRole: action.checkRoles
+      checkRole: action.checkRole
     }
   })
 )
