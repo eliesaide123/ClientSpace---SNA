@@ -2,11 +2,11 @@ import { NgModule } from "@angular/core";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { PolicyDetailsEffects } from "./store/effects";
-import { PolciesDetailsManagementReducers } from "./store/reducers";
+import { PoliciesDetailsManagementReducers } from "./store/reducers";
 
 @NgModule({
     imports: [        
-      StoreModule.forFeature("ClientPolicies", PolciesDetailsManagementReducers),
+      StoreModule.forFeature("ClientPolicies", PoliciesDetailsManagementReducers),
       EffectsModule.forFeature(PolicyDetailsEffects)
     ],
     

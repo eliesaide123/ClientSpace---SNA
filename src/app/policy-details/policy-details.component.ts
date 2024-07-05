@@ -12,7 +12,7 @@ export class PolicyDetailsComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    debugger;
+    
       // this.store.select(addClientRoleToIndexedDB())
   }
 

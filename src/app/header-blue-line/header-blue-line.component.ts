@@ -51,7 +51,7 @@ export class HeaderBlueLineComponent extends BaseComponent implements OnInit {
   }
 
   onLogout() {
-    debugger;
+    
     // this.store.dispatch(logoutActionRequest());
   }
 

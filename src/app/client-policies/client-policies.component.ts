@@ -33,71 +33,69 @@ export class ClientPoliciesComponent extends BaseComponent implements OnInit {
     super()
   }
   
-  ngOnInit() {
-    //this.storageService.deleteDB('CheckRoleDB')
-    this.loadAllPolicies();
-    // Wait until client info is loaded
-    this.subscriptions.push(
-      this.dataSyncService.clientInfoLoaded$.pipe(
-        filter(isLoaded => isLoaded),
+// client-policies.component.ts
+ngOnInit() {
+  this.loadAllPolicies();
+
+  this.subscriptions.push(
+    this.dataSyncService.clientInfoLoaded$.pipe(
+      filter(isLoaded => isLoaded),
+      take(1),
+      switchMap(() => this.store.select(clientCredentialsSelector).pipe(
+        filter(cred => !!cred),
         take(1),
-        switchMap(() => this.store.select(clientCredentialsSelector).pipe(
-          filter(cred => !!cred),
-          take(1),
-          exhaustMap((cred: any) => {
-            console.log('Client Credentials:', cred);
-            this.myCredentials = {
-              sessionID: cred.credentials.sessionID
-            };
-            return this.store.select(checkRoleSelector).pipe(
-              filter(item => !!item),
-              take(1)
-            );
-          })
-        ))
-      ).subscribe((item: any) => {
-        console.log('Role:', item);
-        this.extendedCredentials = {
-          credentials: this.myCredentials,
-          roleId: item.success.roleID,
-          gridSize: 8,
-          direction: 'N',
-          startIndex: 0
-        };
+        exhaustMap((cred: any) => {
+          console.log('Client Credentials:', cred);
+          this.myCredentials = {
+            sessionID: cred.credentials.sessionID,
+          };
+          return this.store.select(checkRoleSelector).pipe(
+            filter(item => !!item),
+            take(1)
+          );
+        })
+      ))
+    ).subscribe((item: any) => {
+      console.log('Role:', item);
+      this.extendedCredentials = {
+        credentials: this.myCredentials,
+        roleId: item.success.roleID,
+        gridSize: 8,
+        direction: 'N',
+        startIndex: 0,
+      };
 
-        this.store.dispatch(ClientPoliciesRequest({ clientPolicies: this.extendedCredentials }));
-debugger
-        this.subscriptions.push(this.store.select(ClientPoliciesSelector).subscribe((clientPolicies) => {
-          debugger;
-          if (clientPolicies) {
-            this.data = clientPolicies.map((item) => {
-              return {
-                policyNo: item.policyNo,
-                contractType: item.holderName,
-                inception: item.inception,
-                expiry: item.expiry,
-                status: item.status_Code,
-                cY: item.cur_Code,
-                premium: item.total_Premium,
-                frequency: item.pay_Frq
-              };
-            });
-          }
-        }));
-        
-      })
-    );
-  }
+      this.store.dispatch(ClientPoliciesRequest({ clientPolicies: this.extendedCredentials }));
 
-  loadAllPolicies(): void {
-    this.subscriptions.push(this.store.select(ClientPoliciesSelector).pipe(
-      filter(policies => !!policies)
-    ).subscribe((data: any) => {
-      this.policies = data;
-    }));
-  }
+      this.subscriptions.push(this.store.select(ClientPoliciesSelector).subscribe((clientPolicies) => {
+        debugger;
+        if (clientPolicies) {
+          this.data = clientPolicies.map((item) => ({
+            policyNo: item.policyNo,
+            contractType: item.holderName,
+            inception: item.inception,
+            expiry: item.expiry,
+            status: item.status_Code,
+            cY: item.cur_Code,
+            premium: item.total_Premium,
+            frequency: item.pay_Frq,
+          }));
+        }
+      }));
+    })
+  );
+}
 
-  getClientPolices(policy : any){
+loadAllPolicies(): void {
+  this.subscriptions.push(this.store.select(ClientPoliciesSelector).pipe(
+    filter(policies => !!policies)
+  ).subscribe((data: any) => {
+    this.policies = data;
+  }));
+}
+
+
+  getClientPolicies(policy : any){
     this.policyDetails = {
       credentials : this.myCredentials,
       roleID : this.extendedCredentials.roleId,

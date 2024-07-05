@@ -17,6 +17,7 @@ export class ClientPoliciesService {
     }
 
     getPorfolio(credentials: any): Observable<any>{     
+        debugger;
         return this.http.post<any>(`${environment.BASE_URL_API}/api/Portfolio/get-portfolio`, credentials)
     }
 

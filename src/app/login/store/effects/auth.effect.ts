@@ -18,6 +18,8 @@ export class AuthEffect {
       tap(() => {        
         this.storageService.addDB(null, "AuthResponseCredentials", "AuthCredentialsStore");
         this.storageService.addDB(null, "CheckRoleDB", "CheckRoleStore");
+        this.storageService.addDB(null, "ClientPoliciesDB", "ClientPoliciesStore")
+        this.storageService.addDB(null, "PolicyDetailsDB", "PolicyDetailsStore")
       })
     ),
     { dispatch: false }

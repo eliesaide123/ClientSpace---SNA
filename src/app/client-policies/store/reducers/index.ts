@@ -3,12 +3,12 @@ import { ClientPolicies, ClientPoliciesReducer } from './client-policies.reducer
 import { PolicyDetailsRed, PolicyDetailsReducer } from './policy-details.reducer';
 
 export interface PolicyDetailsState{
-    PolicyDetail : PolicyDetailsRed,
-    ClientPolicy : ClientPolicies
+    PolicyDetails : PolicyDetailsRed,
+    ClientPolicies : ClientPolicies
 }
 
 export const getPolicyDetails = createFeatureSelector<PolicyDetailsState>(
-    'Client-Policies'
+    'ClientPolicies'
 )
 
 export const getPoliciesDetailsState = createSelector(
@@ -16,9 +16,9 @@ export const getPoliciesDetailsState = createSelector(
     (state: PolicyDetailsState) => state
 );
 
-export const PolciesDetailsManagementReducers: ActionReducerMap<PolicyDetailsState> = {
-    PolicyDetail : PolicyDetailsReducer,
-    ClientPolicy : ClientPoliciesReducer
+export const PoliciesDetailsManagementReducers: ActionReducerMap<PolicyDetailsState> = {
+    PolicyDetails : PolicyDetailsReducer,
+    ClientPolicies : ClientPoliciesReducer
 }
 
 export * from './client-policies.reducer'

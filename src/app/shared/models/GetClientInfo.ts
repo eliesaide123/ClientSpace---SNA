@@ -1,5 +1,5 @@
 export interface GetClientInfo {
-    polcom: Polcom[];
+    polcom: Polcom[];    
     errors: null;
 }
 

@@ -10,7 +10,6 @@ export class StorageService {
 
   addDB(item: any, dbName: string, storeName: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      debugger;
         const request = indexedDB.open(dbName, 1);
 
         request.onerror = (event: Event) => {

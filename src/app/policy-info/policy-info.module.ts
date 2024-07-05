@@ -1,18 +1,19 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { SharedModule } from "../shared/shared.module";
 import { PolicyInfoComponent } from "./policy-info.component";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { PolciesInfoManagementReducers } from "./store/reducers";
+import { ClientPolicyEffects } from "./store/effects";
+
 
 @NgModule({
-    imports: [
-      CommonModule,
-      SharedModule
-    //   StoreModule.forFeature("PolicyDetails", addCheckRoleFromIndexedDBReducer),
-    //   EffectsModule.forFeature(PolicyDetailsEffects)
-    ],
-    declarations: [PolicyInfoComponent],
-    exports: [PolicyInfoComponent]
-  })
-export class PolicyInfoModule{
+  imports: [
+    StoreModule.forFeature("PolicyInfo", PolciesInfoManagementReducers),
+    EffectsModule.forFeature(ClientPolicyEffects)
+  ],
+  declarations: [PolicyInfoComponent],
+  exports: [PolicyInfoComponent]
+})
+export class PolicyInfoModule {
 
 }

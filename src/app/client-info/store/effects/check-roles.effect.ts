@@ -26,8 +26,7 @@ export class CheckRoles {
 
     saveCheckRoleToIndexedDB$ = createEffect(() => this.actions$.pipe(
         ofType(checkRoleSuccess),        
-        tap(action => {
-            debugger;
+        tap(action => {            
             this.storageService.addDB(action.checkRole, "CheckRoleDB", "CheckRoleStore")
                 .then(() => {
                     console.log('CheckRole saved to IndexedDB successfully');
