@@ -1,6 +1,5 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,8 +17,6 @@ import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module
 import { PolicyDetailsModule } from './policy-details/policy-details.module';
 import { PolicyInfoComponent } from './policy-info/policy-info.component';
 import { PolicyInfoModule } from './policy-info/policy-info.module';
-
-
 
 @NgModule({
   declarations: [

@@ -1,10 +1,10 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { CheckPolicyInfoFailure, CheckPolicyInfoRequest, CheckPolicyInfoSuccess } from "../actions/policy-info.action";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, exhaustMap, map, mergeMap, of } from "rxjs";
 import { StorageService } from "../../../shared/services/storage.service";
 import { Injectable } from "@angular/core";
 import { CheckPolicyDetailsFailure, CheckPolicyDetailsRequest, CheckPolicyDetailsSuccess } from "../actions/policy-details.action";
-debugger;
+
 @Injectable()
 export class PolicyInfoEffect {
 

@@ -1,9 +1,8 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { DropdownClientInfoComponent } from "./dropdown-client-info.component";
 
 @NgModule({
-    imports: [         
-        // StoreModule.forFeature("clientCredentials", PolciesManagementReducers),
-        // EffectsModule.forFeature(ClientPoliciesEffects)
-      ],
+
 })
 export class DropdownClientInfoModule { }

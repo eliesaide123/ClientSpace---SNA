@@ -7,6 +7,7 @@ import { PolicyDetails } from "../../../shared/models/PolicyDetails";
 import { Router } from "@angular/router";
 import { StorageService } from "../../../shared/services/storage.service";
 import { PolicyDetailsSuccess } from "../actions/policy-details.action";
+import { GetPolicyDetailsInteface } from "../../../shared/models/GetPolicyDetails";
 
 @Injectable()
 export class PolicyDetailsEffect {
@@ -16,9 +17,9 @@ export class PolicyDetailsEffect {
     savePolicyDetailsToIndexedDB$ = createEffect(() =>
         this.actions$.pipe(
             ofType(PolicyDetailsSuccess),
-            tap(action => {
+            tap(action => {            
                 this.storageService.addDB(action.policyDetails, 'PolicyDetailsDB', 'PolicyDetailsStore')
-                    .then(() => {
+                    .then(() => {                        
                         console.log('PolicyDetails saved to IndexedDB successfully');
                     })
                     .catch(error => {
@@ -33,7 +34,7 @@ export class PolicyDetailsEffect {
         this.actions$.pipe(
             ofType(GetPolicyDetails.PolicyDetailsRequest),
             exhaustMap((action) => this.clientPolicySrv.getPolicyDetails(action.policyDetails).pipe(
-                map((policyDetails: PolicyDetails) => {
+                map((policyDetails: GetPolicyDetailsInteface) => {
                     return GetPolicyDetails.PolicyDetailsSuccess({ policyDetails: policyDetails })
                 })
             )),
@@ -47,7 +48,7 @@ export class PolicyDetailsEffect {
         this.actions$.pipe(
             ofType(GetPolicyDetails.PolicyDetailsSuccess),
             map(({ policyDetails }) => {
-                if (policyDetails) {
+                if (policyDetails) {                    
                     this.router.navigateByUrl('/policy-details');
                 }
             })

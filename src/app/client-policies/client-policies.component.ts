@@ -8,7 +8,7 @@ import { GetPortfolio } from '../shared/models/GetPortfolio';
 import { ClientPoliciesRequest } from './store/actions/client-policies.action';
 import { ClientPoliciesSelector } from './store/selectors/client-policies.reducer';
 import { DataSyncService } from '../shared/services/dataSync.service';
-import { GetPolicyDetails } from '../shared/models/getPolicyDetails';
+import { GetPolicyDetails } from '../shared/models/oldgetPolicyDetails';
 import { PolicyDetailsRequest } from './store/actions/policy-details.action';
 import { StorageService } from '../shared/services/storage.service';
 
@@ -68,7 +68,7 @@ ngOnInit() {
       this.store.dispatch(ClientPoliciesRequest({ clientPolicies: this.extendedCredentials }));
 
       this.subscriptions.push(this.store.select(ClientPoliciesSelector).subscribe((clientPolicies) => {
-        debugger;
+        
         if (clientPolicies) {
           this.data = clientPolicies.map((item) => ({
             policyNo: item.policyNo,
@@ -83,7 +83,7 @@ ngOnInit() {
         }
       }));
     })
-  );
+  );  
 }
 
 loadAllPolicies(): void {

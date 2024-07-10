@@ -8,7 +8,7 @@ export interface PolicyInfoState{
 }
 
 export const getPolicyInfo = createFeatureSelector<PolicyInfoState>(
-    'ClientPolicies'
+    'PolicyInfo'
 )
 
 export const getPoliciesDetailsState = createSelector(

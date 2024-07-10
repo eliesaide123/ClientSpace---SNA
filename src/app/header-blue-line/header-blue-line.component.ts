@@ -46,7 +46,6 @@ export class HeaderBlueLineComponent extends BaseComponent implements OnInit {
     //   filter(item => !!item),
     //   take(1)
     // ).subscribe((item: any) => {
-    //   debugger;
     // })
   }
 

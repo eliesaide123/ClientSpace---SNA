@@ -2,11 +2,11 @@ import { createReducer, on } from "@ngrx/store";
 import { CheckPolicyDetailsSuccess } from "../actions/policy-details.action";
 
 export interface PolicyInfoDetailsState { 
-    PolicyDetails : any;
+    GetPolicyDetails : any;
 }
 
 export const initialPolicyDetailsState: PolicyInfoDetailsState = {
-    PolicyDetails: null,
+    GetPolicyDetails: null,
 }
 
 const _PolicyDetailsStateReducer = createReducer(
@@ -14,7 +14,7 @@ const _PolicyDetailsStateReducer = createReducer(
     on(CheckPolicyDetailsSuccess, (state, action) => {
         return {
             ...state,
-            PolicyDetails: action.GetPolicyDetails
+            GetPolicyDetails: action.GetPolicyDetails
         }
     }),
 )

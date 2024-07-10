@@ -1,6 +1,7 @@
 import { createAction, props } from "@ngrx/store"
-import { GetPolicyDetails } from "../../../shared/models/getPolicyDetails"
+import { GetPolicyDetails } from "../../../shared/models/oldgetPolicyDetails"
 import { PolicyDetails } from "../../../shared/models/PolicyDetails"
+import { GetPolicyDetailsInteface } from "../../../shared/models/GetPolicyDetails"
 
 export const PolicyDetailsRequest = createAction(
     "[Policy Details Request] Policy Details Request",
@@ -9,7 +10,7 @@ export const PolicyDetailsRequest = createAction(
 
 export const PolicyDetailsSuccess = createAction(
     "[Policy Details Success] Policy Details Success",
-    props<{policyDetails: PolicyDetails}>()
+    props<{policyDetails: GetPolicyDetailsInteface}>()
 )
 
 export const PolicyDetailsFailure = createAction(
