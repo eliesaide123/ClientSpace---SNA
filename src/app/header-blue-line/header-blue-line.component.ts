@@ -18,6 +18,7 @@ export class HeaderBlueLineComponent extends BaseComponent implements OnInit {
   username: string = ""
   pin: string = ""
   showArrow: boolean = false
+  isRegister: boolean = false  
 
   constructor(private store: Store, private router: Router, private location: Location) {
     super()
@@ -26,6 +27,7 @@ export class HeaderBlueLineComponent extends BaseComponent implements OnInit {
     ).subscribe((event: NavigationEnd) => {
       const url = event.urlAfterRedirects;
       this.showArrow = url !== '/client-policies';
+      this.isRegister= url === '/register';
     }));
   }
 

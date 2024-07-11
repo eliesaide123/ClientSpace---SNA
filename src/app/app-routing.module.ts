@@ -8,7 +8,7 @@ import { ClientInfoComponent } from './client-info/client-info.component';
 const routes: Routes = [
   { path: '', redirectTo: 'preload', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  // { path: 'register', component: RegisterComponent },
+  { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   // { path: 'client-policies', component: ClientPoliciesComponent },
    { path: 'client-policies', loadChildren: () => import('./main-client-policies/main-client-policies.module').then(m => m.MainClientPoliciesModule) },
    { path: 'policy-details', loadChildren: () => import('./policy-details/policy-details.module').then(m => m.PolicyDetailsModule) },

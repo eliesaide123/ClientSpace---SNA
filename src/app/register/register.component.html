@@ -1,11 +1,5 @@
-<!-- <app-header></app-header>
-
-<div class="blue-line">
-    <div class="icons-top-header">
-        <i class="bi bi-arrow-left-circle" (click)="HistoryMinus1()"></i>
-        <i class="bi bi-cart3"></i>
-    </div>
-</div>
+<app-header></app-header>
+<app-header-blue-line></app-header-blue-line>
 
 <div class="identification-section">
     <h5>My Identification</h5>
@@ -14,19 +8,21 @@
         <div class="form-column">
             <div class="form-row">
                 <label class="inputLabel">User ID *</label>
-                <input class="inputBtn" type="text">
+                    <input class="inputBtn" type="text">
+                
             </div>
             <div class="form-row">
-                <label class="inputLabel">Policy No *</label>
-                <input class="inputBtn" type="text">
-                <span>(ABC/123456)</span>
+                <label class="inputLabel" tabindex="0" data-bs-toggle="tooltip" data-bs-placement='auto' >Policy No *</label>
+                    <input class="inputBtn" type="text">
+                    <span>(ABC/123456)</span>
+                
             </div>
             <div class="form-row">
                 <label class="inputLabel">Expiry Date *</label>
-                <div class="date-inputs">
-                    <input class="inputBtn" type="text" placeholder="Day"> /
-                    <input class="inputBtn" type="text" placeholder="Mon"> /
-                    <input class="inputBtn" type="text" placeholder="Year"> &nbsp;
+                    <div class="date-inputs">
+                    <input class="date-input" type="number" placeholder="Day"> /
+                    <input class="date-input" type="number" placeholder="Mon"> /
+                    <input class="date-input" type="number" placeholder="Year">
                 </div>
                 <span>(dd/mm/yyyy)</span>
             </div>
@@ -42,7 +38,7 @@
             </div>
             <div class="form-row">
                 <label class="inputLabel">Mobile *</label>
-                <input class="inputBtn" type="text">
+                <input class="inputBtn" type="number" pattern="00961[0-9]{8}">
                 <span>(+/00961xxxxxxxx)</span>
             </div>
         </div>
@@ -51,18 +47,25 @@
 <br>
 <div>
     <h5>Validation Set</h5>
-</div>
-<hr>
-
-<div>
-    <span>Question</span>
-    <select name="" id=""></select><br>
-    <span>Answer</span>
-    <input type="text">
-    <br>
+    <hr>
+    <div class="validationset">
+        <div class="form-rows-container qa-container">
+        <div class="form-column qa-column">
+            <div class="form-row qa">
+                <label class="inputLabel">Question *</label>
+                <select class="inputBtn" name="" id=""></select>
+            </div>
+            <div class="form-row qa">
+                <label class="inputLabel">Answer *</label>
+                <input class="inputBtn" type="text">
+            </div>
+        </div>
+    </div>
     <div class="btnSubmitCancel">
         <input class="btnRegister" type="button" value="REGISTER">
-        <input class="btnCancel" type="button" value="CANCEL">
+        <input class="btnCancel" type="button" (click) = "HistoryMinus1()" value="CANCEL">
     </div>
+    </div>
+</div>
 
-</div> -->
+  

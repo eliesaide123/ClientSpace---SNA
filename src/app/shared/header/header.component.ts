@@ -44,9 +44,11 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     ).subscribe((event: NavigationEnd) => {
       const url = event.urlAfterRedirects;
       this.showAddress = url == '/'
-      this.showEmail = url == '/register' ;
-      this.showEmail = url == '/profile' ;
-      this.showEmail = url == '/client-policies' ;
+      if(url == '/register' || url == '/profile' || url == '/client-policies'){
+        this.showEmail = true
+      }else{
+        this.showEmail = false
+      }
       this.showWorkingHours = url !== '/register' && url !== '/profile' && url !== '/client-policies';
     }));
   }
