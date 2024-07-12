@@ -1,6 +1,29 @@
 <div class="main-header">
     <span>{{title}}</span> &nbsp;
-    @if (show) {
+     @if(showDDLsClientPolicies){        
+        <div class="">
+            <select name="" id="">
+                <option *ngFor="let option of dropdownOptions">{{option.eng_Full}}</option>
+            </select> &nbsp;
+            
+                <input type="checkbox"> &nbsp;
+
+                <span>Active Only</span> &nbsp;
+            
+            <i class="bi bi-search"></i> &nbsp;
+        </div>
+        <div class=""></div>        
+        <div>
+            <span>Policy No <span>(ABC/123)</span></span> &nbsp;
+
+            <input type="text" [(ngModel)]="searchText"> &nbsp;
+            <i class="bi bi-search" (click)="filterPolicies()"></i> &nbsp;
+        </div>
+        <div class=""></div>     
+        <div class=""></div>     
+    }
+
+    @if(showDDLsGRTPolicies){
         <div>
             <span>Show By</span> &nbsp;
             <select name="" id="">
@@ -31,26 +54,14 @@
             </select> &nbsp;
             <input type="button" value="Click"> &nbsp;
         </div>
-    }@else {        
-        <div class="">
-            <select name="" id="">
-                <option *ngFor="let option of dropdownOptions">{{option.eng_Full}}</option>
-            </select> &nbsp;
-            
-                <input type="checkbox"> &nbsp;
-
-                <span>Active Only</span> &nbsp;
-            
-            <i class="bi bi-search"></i> &nbsp;
-        </div>
-        <div class=""></div>        
-        <div>
-            <span>Policy No <span>(ABC/123)</span></span> &nbsp;
-
-            <input type="text" [(ngModel)]="searchText"> &nbsp;
-            <i class="bi bi-search" (click)="filterPolicies()"></i> &nbsp;
-        </div>
-        <div class=""></div>     
-        <div class=""></div>     
     }
+
+    @if(showDDLsPolicyDetails){
+        <div>
+            <select name="" id="">
+                <option></option>
+            </select> &nbsp;
+        </div>
+    }
+
 </div>

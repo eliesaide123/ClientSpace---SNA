@@ -9,6 +9,7 @@ import { HeaderBlueLineComponent } from "../header-blue-line/header-blue-line.co
 import { MainClientPoliciesComponent } from "./main-client-policies.component";
 import { FormsModule } from "@angular/forms";
 import { HeaderBlueLineModule } from "../header-blue-line/header-blue-line.module";
+import { DropdownClientInfoModule } from "../dropdown-client-info/dropdown-client-info.module";
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { HeaderBlueLineModule } from "../header-blue-line/header-blue-line.modul
       SharedModule,    
       FormsModule,
       HeaderBlueLineModule,
+      DropdownClientInfoModule,
       RouterModule.forChild([
         {
           path: '',
@@ -23,7 +25,7 @@ import { HeaderBlueLineModule } from "../header-blue-line/header-blue-line.modul
         },
       ]),      
     ],
-    declarations: [MainClientPoliciesComponent, ClientInfoComponent, DropdownClientInfoComponent, ClientPoliciesComponent]
+    declarations: [MainClientPoliciesComponent, ClientInfoComponent, ClientPoliciesComponent]
     
     
   })

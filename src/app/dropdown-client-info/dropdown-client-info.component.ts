@@ -14,7 +14,9 @@ import { BaseComponent } from '../shared/BaseComponent';
 export class DropdownClientInfoComponent extends BaseComponent implements OnInit {
 
   title: string;
-  show: boolean;
+  showDDLsClientPolicies: boolean;
+  showDDLsPolicyDetails: boolean;
+  showDDLsGRTPolicies : boolean;
   dropdownOptions: any[] = [];
 
   searchText: string = '';
@@ -32,10 +34,11 @@ export class DropdownClientInfoComponent extends BaseComponent implements OnInit
     const fullUrl = this.router.url;
     if (fullUrl == "/client-policies") {
       this.title = "My Policies"
-      this.show = false;
-    } else if (fullUrl == "/GrtPolicies") {
-      this.title = "Certificates"
-      this.show = true
+      this.showDDLsClientPolicies = true    
+    }else if(fullUrl == "/policy-details"){
+      this.showDDLsPolicyDetails = true
+    }else if(fullUrl == "/showDDLsGRTPolicies"){
+      this.showDDLsGRTPolicies = true
     }
 
     this.subscriptions.push(this.store.select(clientInfoSelector).pipe(
@@ -55,6 +58,10 @@ export class DropdownClientInfoComponent extends BaseComponent implements OnInit
       this.filteredPolicies = data;
       this.policiesFiltered.emit(this.filteredPolicies);
     }));
+  }
+
+  loadAllPolicyDetailsDDLs() : void{
+    
   }
 
   filterPolicies(){

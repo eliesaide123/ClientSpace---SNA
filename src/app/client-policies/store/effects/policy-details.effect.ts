@@ -7,7 +7,7 @@ import { PolicyDetails } from "../../../shared/models/PolicyDetails";
 import { Router } from "@angular/router";
 import { StorageService } from "../../../shared/services/storage.service";
 import { PolicyDetailsSuccess } from "../actions/policy-details.action";
-import { GetPolicyDetailsInteface } from "../../../shared/models/GetPolicyDetails";
+import { GetPolicyDetailsInteface } from "../../../shared/models/getPolicyDetails";
 
 @Injectable()
 export class PolicyDetailsEffect {

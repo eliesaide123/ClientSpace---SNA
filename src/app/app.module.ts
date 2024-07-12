@@ -14,13 +14,15 @@ import { ClientPoliciesModule } from './client-policies/client-policies.module';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { MainClientPoliciesModule } from './main-client-policies/main-client-policies.module';
 import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module';
-import { PolicyDetailsModule } from './policy-details/policy-details.module';
+import { MainPolicyDetailsModule } from './main-policy-details/main-policy-details.module';
 import { PolicyInfoComponent } from './policy-info/policy-info.component';
 import { PolicyInfoModule } from './policy-info/policy-info.module';
+import { PolicyDetailsComponent } from './policy-details/policy-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PolicyDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,7 @@ import { PolicyInfoModule } from './policy-info/policy-info.module';
     ClientInfoModule,
     MainClientPoliciesModule,
     ClientPoliciesModule,       
-    PolicyDetailsModule,
+    MainPolicyDetailsModule,
     PolicyInfoModule,
     DatePipe,
     DecimalPipe,

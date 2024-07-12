@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { PolicyDetails } from "../../../shared/models/PolicyDetails";
 import { PolicyDetailsSuccess } from "../actions/policy-details.action";
-import { GetPolicyDetailsInteface } from "../../../shared/models/GetPolicyDetails";
+import { GetPolicyDetailsInteface } from "../../../shared/models/getPolicyDetails";
 
 export interface PolicyDetailsRed{
     policyDetails : GetPolicyDetailsInteface | null

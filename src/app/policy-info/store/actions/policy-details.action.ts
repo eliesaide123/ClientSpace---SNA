@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { GetPolicyDetailsInteface } from '../../../shared/models/GetPolicyDetails';
+import { GetPolicyDetailsInteface } from '../../../shared/models/getPolicyDetails';
 
 export const CheckPolicyDetailsRequest = createAction(
     '[Check Policy Details Request] Check Policy Details Request'
