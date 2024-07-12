@@ -28,8 +28,7 @@ export class PolicyInfoComponent implements OnInit {
     this.store.dispatch(CheckPolicyDetailsRequest());
     this.store.dispatch(CheckPolicyInfoRequest());
 
-    this.store.select(ClientPoliciesSelector).subscribe((item) => {
-      console.log("ISSAM: ", item)
+    this.store.select(ClientPoliciesSelector).subscribe((item) => {    
       if (item && item.polcom && item.polcom.length > 0) {
         var polcom = item.polcom[0]
         this.policyNo = polcom.policyNo + " - " + polcom.productName;

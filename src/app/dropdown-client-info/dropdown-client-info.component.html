@@ -59,7 +59,7 @@
     @if(showDDLsPolicyDetails){
         <div>
             <select name="" id="">
-                <option></option>
+                <option *ngFor="let option of codes" [value]="option.code">{{option.eng_Full}}</option>
             </select> &nbsp;
         </div>
     }

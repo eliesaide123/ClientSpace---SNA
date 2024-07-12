@@ -5,6 +5,8 @@ import { clientInfoSelector } from '../client-info/store/selectors/get-client-in
 import { filter } from 'rxjs';
 import { ClientPoliciesSelector } from '../client-policies/store/selectors/client-policies.reducer';
 import { BaseComponent } from '../shared/BaseComponent';
+import { GetPolcomDDLsSelector } from '../policy-info/store/selectors';
+import { Code, GetPolicyDetailsInteface } from '../shared/models/getPolicyDetails';
 
 @Component({
   selector: 'app-dropdown-client-info',
@@ -22,6 +24,7 @@ export class DropdownClientInfoComponent extends BaseComponent implements OnInit
   searchText: string = '';
   filteredPolicies: any[] = [];
   allPolicies: any[] = [];
+  codes: Code[] = [];
 
   @Output() policiesFiltered = new EventEmitter<any[]>();
 
@@ -31,6 +34,7 @@ export class DropdownClientInfoComponent extends BaseComponent implements OnInit
 
   ngOnInit() {
     this.loadAllPolicies();
+    this.loadAllPolicyDetailsDDLs();
     const fullUrl = this.router.url;
     if (fullUrl == "/client-policies") {
       this.title = "My Policies"
@@ -61,7 +65,11 @@ export class DropdownClientInfoComponent extends BaseComponent implements OnInit
   }
 
   loadAllPolicyDetailsDDLs() : void{
-    
+    this.subscriptions.push(this.store.select(GetPolcomDDLsSelector.getPolcomForDDlSelector).subscribe((data:any) => {
+      if(data && data.codes ){
+        this.codes = data.codes;
+      }
+    }))
   }
 
   filterPolicies(){
