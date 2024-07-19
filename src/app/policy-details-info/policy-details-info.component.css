@@ -1,0 +1,31 @@
+.policy-details {
+    margin: 20px;
+}
+
+.policy-header h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.table, .table th, .table td {
+    border: 1px solid #ddd;
+    background-color: #498ac5;
+    padding: 8px;
+    color: #ffff;
+}
+
+.table th {
+    background-color: #49648c;
+    text-align: center;
+}
+
+.table tr td {
+
+}
+

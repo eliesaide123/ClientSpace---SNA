@@ -9,7 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './login/auth.module';
-import { ClientInfoModule } from './client-info/client-info.module';
+import { ClientInfoModule } from './client-info/client-info.module';  
 import { ClientPoliciesModule } from './client-policies/client-policies.module';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { MainClientPoliciesModule } from './main-client-policies/main-client-policies.module';
@@ -17,12 +17,12 @@ import { HeaderBlueLineModule } from './header-blue-line/header-blue-line.module
 import { MainPolicyDetailsModule } from './main-policy-details/main-policy-details.module';
 import { PolicyInfoComponent } from './policy-info/policy-info.component';
 import { PolicyInfoModule } from './policy-info/policy-info.module';
-import { PolicyDetailsComponent } from './policy-details/policy-details.component';
+import { PolicyDetailsInfoComponent } from './policy-details-info/policy-details-info.component';
+import { PolicyDetailsInfoModule } from './policy-details-info/policy-details-info.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PolicyDetailsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +37,7 @@ import { PolicyDetailsComponent } from './policy-details/policy-details.componen
     ClientPoliciesModule,       
     MainPolicyDetailsModule,
     PolicyInfoModule,
+    PolicyDetailsInfoModule,
     DatePipe,
     DecimalPipe,
     StoreModule.forRoot({}, {}),

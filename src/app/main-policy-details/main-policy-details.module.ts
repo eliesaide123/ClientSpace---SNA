@@ -10,8 +10,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { PolicyInfoModule } from "../policy-info/policy-info.module";
 import { ClientPoliciesReducer } from "../client-policies/store/reducers";
 import { DropdownClientInfoModule } from "../dropdown-client-info/dropdown-client-info.module";
-
-
+import { PolicyDetailsInfoModule } from "../policy-details-info/policy-details-info.module";
 
 @NgModule({
   imports: [
@@ -20,6 +19,7 @@ import { DropdownClientInfoModule } from "../dropdown-client-info/dropdown-clien
     FormsModule,
     HeaderBlueLineModule,
     DropdownClientInfoModule,
+    PolicyDetailsInfoModule,
     PolicyInfoModule,
     RouterModule.forChild([
       {
