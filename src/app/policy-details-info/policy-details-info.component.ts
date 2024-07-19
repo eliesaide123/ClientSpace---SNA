@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged, filter, of, switchMap, take, tap } from 'rxjs';
+import { combineLatest, filter, take, tap } from 'rxjs';
 import { BaseComponent } from '../shared/BaseComponent';
-import { getPolcomFromClientPolicies } from '../policy-info/store/selectors/getPolcomFromClientPolicies.selector';
+import { getPolcomFromClientPoliciesSelector } from '../policy-info/store/selectors/getPolcomFromClientPolicies.selector';
+import { sharedPolicyNo$ } from '../shared/sharedState/sharedState';
 
 @Component({
   selector: 'app-policy-details-info',
@@ -11,7 +12,12 @@ import { getPolcomFromClientPolicies } from '../policy-info/store/selectors/getP
 })
 export class PolicyDetailsInfoComponent extends BaseComponent implements OnInit {
 
-  policyNo: string = ''
+  policyNoArr: string[] = [];
+  InputPolicyNo: string = "";
+  matchingPolicy: any = null;
+  holderName: string;
+  carName: string;
+  plateNumber: string;
 
   constructor(private store: Store) {
     super();
@@ -19,18 +25,26 @@ export class PolicyDetailsInfoComponent extends BaseComponent implements OnInit 
 
   ngOnInit() {
     this.subscriptions.push(
-      this.store.select(getPolcomFromClientPolicies).pipe(
-        filter(element => element !== null), // Ensure element is not null
+      combineLatest([
+        sharedPolicyNo$,
+        this.store.select(getPolcomFromClientPoliciesSelector).pipe(
+          filter(isLoaded => isLoaded),
+          take(1)
+        )
+      ]).subscribe(([policyNo, element]) => {
+        this.InputPolicyNo = policyNo;
         
-      ).subscribe((element) => {
-        console.log('POLCOM: ', element);
-        if(element){
+        this.policyNoArr = element; 
+        
+        this.matchingPolicy = this.policyNoArr.find((item:any) => item?.policyNo == this.InputPolicyNo);
 
-          this.policyNo = element.ClientPolicies.ClientPolicies.polcom[0].policyNo
+        if (this.matchingPolicy) {
+          this.holderName = this.matchingPolicy.holderName.split("(")[1]
+          this.carName =  this.holderName.split("PL#")[0].trim()
+          this.plateNumber =  this.holderName.split("PL#")[1].trim().split(")")[0]
+          debugger;
         }
       })
     );
-  }
+  }  
 }
-
-//getPolcomFromClientPolicies

@@ -6,6 +6,7 @@ import { filter, take, switchMap, distinctUntilChanged } from 'rxjs/operators';
 import { DataSyncService } from '../shared/services/dataSync.service';
 import { ClientPoliciesSelector } from './store/selectors/policy-details.selector';
 import { BaseComponent } from '../shared/BaseComponent';
+import { sharedPolicyNoSubject } from '../shared/sharedState/sharedState';
 
 @Component({
   selector: 'app-policy-info',
@@ -14,6 +15,7 @@ import { BaseComponent } from '../shared/BaseComponent';
 })
 export class PolicyInfoComponent extends BaseComponent implements OnInit {
 
+  
   policyNo: string = "";  
   holderName: string = "";
   agtCode: string = "";
@@ -38,6 +40,7 @@ export class PolicyInfoComponent extends BaseComponent implements OnInit {
     ).subscribe((item) => {    
       var polcom = item.polcom[0];
       this.policyNo = polcom.policyNo + " - " + polcom.productName;
+      sharedPolicyNoSubject.next(polcom.policyNo);      
       this.holderName = polcom.holderName;
       this.agtCode = polcom.agt_code;
       this.policyStatus = polcom.status_Code;
