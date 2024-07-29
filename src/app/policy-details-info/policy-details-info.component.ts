@@ -42,7 +42,6 @@ export class PolicyDetailsInfoComponent extends BaseComponent implements OnInit 
           this.holderName = this.matchingPolicy.holderName.split("(")[1]
           this.carName =  this.holderName.split("PL#")[0].trim()
           this.plateNumber =  this.holderName.split("PL#")[1].trim().split(")")[0]
-          debugger;
         }
       })
     );

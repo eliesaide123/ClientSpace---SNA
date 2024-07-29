@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.flex-container{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.tab-container{
+    padding:10px;
+}
+
+.tabs {
+    display: flex;
+    gap:10px;
+}
+
+.tab-link {
+    padding: 10px;
+    cursor: pointer;
+    background: #006192;
+    border: none;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s;
+}
+
+.tab-link:hover {
+    background: #e2e2e2;
+    color: #49a3d3;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border-top: none;
+}
+
+.tab-content:target {
+    display: block;
+}
+
+/* Default to the first tab */
+#default:target~.tab-content {
+    display: block;
+}
+
+.tabs a:target,
+.tabs a.active {
+    background: #e2e2e2;
+    font-weight: bold;
+    color: #49a3d3;
+}

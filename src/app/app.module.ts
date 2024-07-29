@@ -19,6 +19,16 @@ import { PolicyInfoComponent } from './policy-info/policy-info.component';
 import { PolicyInfoModule } from './policy-info/policy-info.module';
 import { PolicyDetailsInfoComponent } from './policy-details-info/policy-details-info.component';
 import { PolicyDetailsInfoModule } from './policy-details-info/policy-details-info.module';
+import { PolicyMotorDetailsComponent } from './policy-motor-details/policy-motor-details.component';
+import { PolicyMotorDetailsModule } from './policy-motor-details/policy-motor-details.module';
+import { RiskDetailsComponent } from './risk-details/risk-details.component';
+import { CoversComponent } from './covers/covers.component';
+import { ClaimsComponent } from './claims/claims.component';
+import { SpecialClausesComponent } from './special-clauses/special-clauses.component';
+import { SpecialClausesModule } from './special-clauses/special-clauses.module';
+import { RiskDetailsModule } from './risk-details/risk-details.module';
+import { CoversModule } from './covers/covers.module';
+import { ClaimsModule } from './claims/claims.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +48,11 @@ import { PolicyDetailsInfoModule } from './policy-details-info/policy-details-in
     MainPolicyDetailsModule,
     PolicyInfoModule,
     PolicyDetailsInfoModule,
+    PolicyMotorDetailsModule,
+    //SpecialClausesModule,
+    RiskDetailsModule,
+    //CoversModule,
+    //ClaimsModule,
     DatePipe,
     DecimalPipe,
     StoreModule.forRoot({}, {}),

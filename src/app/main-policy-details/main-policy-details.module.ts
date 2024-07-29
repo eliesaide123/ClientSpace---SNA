@@ -11,6 +11,7 @@ import { PolicyInfoModule } from "../policy-info/policy-info.module";
 import { ClientPoliciesReducer } from "../client-policies/store/reducers";
 import { DropdownClientInfoModule } from "../dropdown-client-info/dropdown-client-info.module";
 import { PolicyDetailsInfoModule } from "../policy-details-info/policy-details-info.module";
+import { PolicyMotorDetailsModule } from "../policy-motor-details/policy-motor-details.module";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { PolicyDetailsInfoModule } from "../policy-details-info/policy-details-i
     DropdownClientInfoModule,
     PolicyDetailsInfoModule,
     PolicyInfoModule,
+    PolicyMotorDetailsModule,
     RouterModule.forChild([
       {
         path: '',
